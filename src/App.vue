@@ -48,9 +48,9 @@ async function openFile() {
 	const res = useFileSystemAccess({
 		dataType: "Text",
 		types: [{
-			description: "Vinvoice file",
+			description: "ILY invoice file",
 			accept: {
-				"application/json": [".vinvoice"],
+				"application/json": [".ily"],
 			},
 		}],
 		excludeAcceptAllOption: true,
@@ -69,9 +69,9 @@ async function saveFile() {
 	const res = useFileSystemAccess({
 		dataType: "Text",
 		types: [{
-			description: "Vinvoice file",
+			description: "ILY invoice file",
 			accept: {
-				"application/json": [".vinvoice"],
+				"application/json": [".ily"],
 			},
 		}],
 		excludeAcceptAllOption: true,

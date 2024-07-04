@@ -79,7 +79,7 @@ export const en = {
 	review: {
 		labels: {
 			save: "Save",
-			saveAsInvoice: "Save as .invoice",
+			saveAsInvoice: "Save as .ily",
 			saveAsPdf: "Export to PDF",
 		},
 	},

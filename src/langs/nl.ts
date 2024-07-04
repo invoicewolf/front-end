@@ -79,7 +79,7 @@ export const nl = {
 	review: {
 		labels: {
 			save: "Opslaan",
-			saveAsInvoice: "Opslaan als .invoice",
+			saveAsInvoice: "Opslaan als .ily",
 			saveAsPdf: "Exporteer naar PDF",
 		},
 	},

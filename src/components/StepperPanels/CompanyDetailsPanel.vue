@@ -88,7 +88,7 @@ const isValidTaxNumber = computed(() => {
 		<AddressDetails address-details="companyDetails" />
 	</div>
 
-	<p>
+	<p class="select-none">
 		<span class="text-danger">*</span>{{ $t("general.forms.requiredExplanation") }}
 	</p>
 </template>

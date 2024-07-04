@@ -15,7 +15,7 @@ const { pdf } = usePDF({
 	<div class="grid grid-cols-2">
 		<VuePDF :pdf="pdf" />
 		<div class="flex w-56 flex-col gap-4">
-			<h1 class="text text-4xl font-medium">
+			<h1 class="text select-none text-4xl font-medium">
 				{{ $t("review.labels.save") }}
 			</h1>
 

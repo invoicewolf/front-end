@@ -50,7 +50,7 @@ function onSubjectChange(val: string) {
 		<AddressDetails address-details="addresseeDetails" />
 	</div>
 
-	<p>
+	<p class="select-none">
 		<span class="text-danger">*</span>{{ $t("general.forms.requiredExplanation") }}
 	</p>
 </template>

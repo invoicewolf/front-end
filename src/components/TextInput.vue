@@ -28,11 +28,11 @@ const model = defineModel({ required: true, type: String });
 
 <template>
 	<div v-if="!enableGroup" class="flex flex-col gap-2">
-		<label v-if="!toggleable" :for="id" class="font-medium" :class="labelClass">{{ label }}<span
+		<label v-if="!toggleable" :for="id" class=" select-none font-medium" :class="labelClass">{{ label }}<span
 			v-if="required"
 			class="text-danger"
 		>*</span></label>
-		<span v-else class="flex w-full items-center justify-between">
+		<span v-else class="flex w-full select-none items-center justify-between">
 			<label :for="id" class="font-medium" :class="labelClass">{{ label }}<span
 				v-if="required"
 				class="text-danger"
@@ -50,14 +50,14 @@ const model = defineModel({ required: true, type: String });
 			:disabled="disabled"
 			:invalid="invalid"
 		/>
-		<span v-if="description" class="text-sm">{{ description }}</span>
+		<span v-if="description" class="select-none text-sm">{{ description }}</span>
 	</div>
 	<div v-else class="flex flex-col gap-2">
-		<label v-if="!toggleable" :for="id" class="font-medium" :class="labelClass">{{ label }}<span
+		<label v-if="!toggleable" :for="id" class="select-none font-medium" :class="labelClass">{{ label }}<span
 			v-if="required"
 			class="text-danger"
 		>*</span></label>
-		<span v-else class="flex w-full items-center justify-between">
+		<span v-else class="flex w-full select-none items-center justify-between">
 			<label :for="id" class="font-medium" :class="labelClass">{{ label }}<span
 				v-if="required"
 				class="text-danger"
@@ -99,7 +99,7 @@ const model = defineModel({ required: true, type: String });
 				<i v-else class="pi pi-times text-danger" />
 			</pv-input-group-addon>
 		</pv-input-group>
-		<span v-if="description" class="text-sm">{{ description }}</span>
+		<span v-if="description" class="select-none text-sm">{{ description }}</span>
 	</div>
 </template>
 

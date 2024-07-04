@@ -174,7 +174,7 @@ const enableStep4NextButton = computed(() => {
 </script>
 
 <template>
-	<div class="size-full">
+	<div class="size-full min-h-screen bg-surface-50 dark:bg-surface-950">
 		<pv-menubar
 			:model="menubarItems"
 			:pt="{
@@ -184,7 +184,9 @@ const enableStep4NextButton = computed(() => {
 			}"
 		>
 			<template #start>
-				<span class="text-xl font-bold">Invoicely.<span class="text-primary-500">org</span></span>
+				<span class="cursor-default select-none text-xl font-bold">Invoicely.<span
+					class="text-primary-500"
+				>org</span></span>
 			</template>
 			<template #end>
 				<span class="flex flex-row items-center gap-4">
@@ -194,22 +196,22 @@ const enableStep4NextButton = computed(() => {
 				</span>
 			</template>
 		</pv-menubar>
-		<div class="size-full p-10">
+		<div class="p-10">
 			<pv-stepper value="1">
 				<pv-step-list>
-					<pv-step value="1">
+					<pv-step value="1" class="select-none">
 						1: {{ $t("general.stepper.step1") }}
 					</pv-step>
-					<pv-step value="2">
+					<pv-step value="2" class="select-none">
 						2: {{ $t("general.stepper.step2") }}
 					</pv-step>
-					<pv-step value="3">
+					<pv-step value="3" class="select-none">
 						3: {{ $t("general.stepper.step3") }}
 					</pv-step>
-					<pv-step value="4">
+					<pv-step value="4" class="select-none">
 						4: {{ $t("general.stepper.step4") }}
 					</pv-step>
-					<pv-step value="5">
+					<pv-step value="5" class="select-none">
 						5: {{ $t("general.stepper.step5") }}
 					</pv-step>
 				</pv-step-list>

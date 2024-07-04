@@ -32,7 +32,7 @@ watch(dates, () => {
 			mask="aa99 aaaa 9999 9999 99?99"
 		/>
 		<div class="flex flex-col gap-2">
-			<label for="currency" class="font-medium">{{ $t("paymentDetails.labels.currency") }}<span
+			<label for="currency" class="select-none font-medium">{{ $t("paymentDetails.labels.currency") }}<span
 				class="text-danger"
 			>*</span></label>
 			<pv-select
@@ -45,7 +45,7 @@ watch(dates, () => {
 		</div>
 
 		<div class="flex flex-col gap-2">
-			<label for="currency" class="font-medium sm:text-nowrap">{{
+			<label for="currency" class="select-none font-medium sm:text-nowrap">{{
 				$t("paymentDetails.labels.invoiceDateAndDueDate")
 			}}<span
 				class="text-danger"
@@ -85,7 +85,7 @@ watch(dates, () => {
 		/>
 	</div>
 
-	<p>
+	<p class="select-none">
 		<span class="text-danger">*</span>{{ $t("general.forms.requiredExplanation") }}
 	</p>
 </template>

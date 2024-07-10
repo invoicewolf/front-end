@@ -106,7 +106,7 @@ function onCellEditComplete(event: DataTableCellEditCompleteEvent) {
 			</pv-column>
 		</pv-data-table>
 
-		<div class="flex w-full place-content-end bg-surface-0 p-4">
+		<div class="flex w-full place-content-end bg-surface-0 p-4 dark:bg-surface-900">
 			<div class="grid select-none grid-cols-3 gap-2">
 				<p class=" text-right">
 					{{ $t("products.table.subtotal") }}

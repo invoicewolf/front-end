@@ -138,6 +138,7 @@ const enableStep1NextButton = computed(() => {
 	return !(
 		!!invoiceManager.invoice.companyDetails.representativeName
 		&& !!invoiceManager.invoice.companyDetails.representativeEmail
+		&& invoiceManager.invoice.companyDetails.isValidEmail()
 		&& !!invoiceManager.invoice.companyDetails.companyName
 		&& !!invoiceManager.invoice.companyDetails.zipCode
 		&& !!invoiceManager.invoice.companyDetails.houseNumber

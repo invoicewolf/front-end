@@ -30,6 +30,9 @@ export const en = {
 			streetName: "Street name",
 			city: "City",
 		},
+		messages: {
+			zipCodeNotFound: `The provided zip code and number could not be found in the Netherlands. \nPlease fill in the full address details yourself, or try again.`,
+		},
 	},
 	companyDetails: {
 		labels: {

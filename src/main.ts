@@ -1,10 +1,12 @@
 import "./assets/main.css";
+
 import { en } from "@/langs/en";
 import { nl } from "@/langs/nl";
 import { definePreset } from "@primevue/themes";
 import Aura from "@primevue/themes/aura";
 import VueDatePicker from "@vuepic/vue-datepicker";
 import "@vuepic/vue-datepicker/dist/main.css";
+import BlockUI from "primevue/blockui";
 import Button from "primevue/button";
 import Column from "primevue/column";
 import PrimeVue from "primevue/config";
@@ -23,6 +25,8 @@ import StepList from "primevue/steplist";
 import StepPanel from "primevue/steppanel";
 import StepPanels from "primevue/steppanels";
 import Stepper from "primevue/stepper";
+import Toast from "primevue/toast";
+import ToastService from "primevue/toastservice";
 import ToggleSwitch from "primevue/toggleswitch";
 import Toolbar from "primevue/toolbar";
 
@@ -118,6 +122,9 @@ app.component("PvInputGroup", InputGroup);
 app.component("PvInputGroupAddon", InputGroupAddon);
 app.component("PvInputMask", InputMask);
 
+app.component("PvBlockUi", BlockUI);
+app.component("PvToast", Toast);
+
 app.component("PvDatePicker", DatePicker);
 
 app.component("VueDatePicker", VueDatePicker);
@@ -132,6 +139,8 @@ export const i18n = createI18n({
 		nl,
 	},
 });
+
+app.use(ToastService);
 
 app.use(i18n);
 

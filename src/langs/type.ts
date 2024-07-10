@@ -28,6 +28,9 @@ export interface languageInterface {
 			streetName: string;
 			city: string;
 		};
+		messages: {
+			zipCodeNotFound: string;
+		};
 	};
 	companyDetails: {
 		labels: {

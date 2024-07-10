@@ -3,6 +3,7 @@ import { computed } from "vue";
 import AddressDetails from "@/components/AddressDetails.vue";
 import TextInput from "@/components/TextInput.vue";
 import { useInvoiceManager } from "@/composables/invoice-manager";
+import vCapitalize from "@/directives/capitalize";
 
 const invoiceManager = useInvoiceManager();
 
@@ -76,6 +77,7 @@ const isValidTaxNumber = computed(() => {
 
 		<TextInput
 			id="taxnumber"
+			v-capitalize
 			:model-value="invoiceManager.invoice.companyDetails.taxNumber"
 			:label="$t('companyDetails.labels.taxNumber')"
 			:description="$t('companyDetails.descriptions.notAddingTaxNumber')"

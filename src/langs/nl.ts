@@ -30,6 +30,9 @@ export const nl = {
 			streetName: "Straat",
 			city: "Stad",
 		},
+		messages: {
+			zipCodeNotFound: `De postcode- en huisnummercombinatie is niet gevonden in Nederland. \nVul zelf handmatig de adresgegevens in, of probeer opnieuw.`,
+		},
 	},
 	companyDetails: {
 		labels: {

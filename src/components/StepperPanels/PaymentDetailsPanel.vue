@@ -2,6 +2,7 @@
 import { computed, ref, watch } from "vue";
 import TextInput from "@/components/TextInput.vue";
 import { useInvoiceManager } from "@/composables/invoice-manager";
+import vCapitalize from "@/directives/capitalize";
 import { validateIban } from "@/utils/helpers/validate-iban";
 import { currencies } from "@/utils/typings/currencies";
 
@@ -24,11 +25,11 @@ watch(dates, () => {
 		<TextInput
 			id="iban"
 			v-model="invoiceManager.invoice.paymentDetails.iban"
+			v-capitalize
 			:label="$t('paymentDetails.labels.iban')"
 			:invalid="!validIban"
 			required
 			enable-group
-			input-class="uppercase"
 			mask="aa99 aaaa 9999 9999 99?99"
 		/>
 		<div class="flex flex-col gap-2">

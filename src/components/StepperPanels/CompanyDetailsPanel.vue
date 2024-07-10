@@ -26,18 +26,21 @@ function onTaxNumberChange(val: string) {
 }
 
 const isValidCompanyNumber = computed(() => {
-	return !(
+	return (
 		!!invoiceManager.invoice.companyDetails.companyNumber
 		&& invoiceManager.invoice.companyDetails.companyNumber.length === 8
-
 	);
 });
 
 const isValidTaxNumber = computed(() => {
-	return !(
+	return (
 		!!invoiceManager.invoice.companyDetails.taxNumber
 		&& invoiceManager.invoice.companyDetails.taxNumber.length === 14
 	);
+});
+
+const isValidEmail = computed(() => {
+	return invoiceManager.invoice.companyDetails.isValidEmail();
 });
 </script>
 
@@ -55,6 +58,8 @@ const isValidTaxNumber = computed(() => {
 			v-model="invoiceManager.invoice.companyDetails.representativeEmail"
 			:label="$t('companyDetails.labels.representativeEmail')"
 			required
+			enable-group
+			:invalid="!isValidEmail"
 		/>
 
 		<TextInput
@@ -71,7 +76,7 @@ const isValidTaxNumber = computed(() => {
 			:description="$t('companyDetails.descriptions.notAddingCompanyNumber')"
 			enable-group
 			mask="99999999"
-			:invalid="isValidCompanyNumber"
+			:invalid="!isValidCompanyNumber"
 			@update:model-value="onCompanyNumberChange"
 		/>
 
@@ -83,7 +88,7 @@ const isValidTaxNumber = computed(() => {
 			:description="$t('companyDetails.descriptions.notAddingTaxNumber')"
 			enable-group
 			mask="aa999999999a99"
-			:invalid="isValidTaxNumber"
+			:invalid="!isValidTaxNumber"
 			@update:model-value="onTaxNumberChange"
 		/>
 

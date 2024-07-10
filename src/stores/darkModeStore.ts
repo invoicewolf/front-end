@@ -7,11 +7,20 @@ const root = document.getElementsByTagName("html")[0];
 export function checkMode() {
 	const mode = localStorage.getItem("mode");
 
+	if (!mode) {
+		if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+			return setDark();
+		}
+		else {
+			return setLight();
+		}
+	}
+
 	if (mode === "dark") {
-		setDark();
+		return setDark();
 	}
 	else {
-		setLight();
+		return setLight();
 	}
 }
 

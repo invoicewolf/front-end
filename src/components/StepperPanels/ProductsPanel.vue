@@ -106,28 +106,30 @@ function onCellEditComplete(event: DataTableCellEditCompleteEvent) {
 			</pv-column>
 		</pv-data-table>
 
-		<div class="grid select-none grid-cols-3 gap-2 self-end">
-			<p class=" text-right">
-				{{ $t("products.table.subtotal") }}
-			</p>
-			<p>{{ invoiceManager.invoice.paymentDetails.currency }}</p>
-			<p>{{ formatCurrencyInvoice(invoice.price.subtotal) }}</p>
+		<div class="flex w-full place-content-end bg-surface-0 p-4">
+			<div class="grid select-none grid-cols-3 gap-2">
+				<p class=" text-right">
+					{{ $t("products.table.subtotal") }}
+				</p>
+				<p>{{ invoiceManager.invoice.paymentDetails.currency }}</p>
+				<p>{{ formatCurrencyInvoice(invoice.price.subtotal) }}</p>
 
-			<p class=" text-right">
-				{{ $t("products.table.taxAmount") }}
-			</p>
-			<p>{{ invoiceManager.invoice.paymentDetails.currency }}</p>
-			<p>{{ formatCurrencyInvoice(invoice.price.taxAmount) }}</p>
+				<p class=" text-right">
+					{{ $t("products.table.taxAmount") }}
+				</p>
+				<p>{{ invoiceManager.invoice.paymentDetails.currency }}</p>
+				<p>{{ formatCurrencyInvoice(invoice.price.taxAmount) }}</p>
 
-			<p class="text-right font-bold">
-				{{ $t("products.table.totalIncludingTax") }}
-			</p>
-			<p class="font-bold">
-				{{ invoiceManager.invoice.paymentDetails.currency }}
-			</p>
-			<p class="font-bold">
-				{{ formatCurrencyInvoice(invoice.price.total) }}
-			</p>
+				<p class="text-right font-bold">
+					{{ $t("products.table.totalIncludingTax") }}
+				</p>
+				<p class="font-bold">
+					{{ invoiceManager.invoice.paymentDetails.currency }}
+				</p>
+				<p class="font-bold">
+					{{ formatCurrencyInvoice(invoice.price.total) }}
+				</p>
+			</div>
 		</div>
 	</div>
 </template>

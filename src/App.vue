@@ -172,6 +172,8 @@ const enableStep4NextButton = computed(() => {
 		&& !!invoiceManager.invoice.paymentDetails.invoiceNumber
 	);
 });
+
+const devMode = import.meta.env.DEV;
 </script>
 
 <template>
@@ -185,9 +187,17 @@ const enableStep4NextButton = computed(() => {
 			}"
 		>
 			<template #start>
-				<span class="cursor-default select-none text-xl font-bold">Invoicely.<span
-					class="text-primary-500"
-				>org</span></span>
+				<div class="flex flex-col">
+					<span class="cursor-default select-none text-xl font-bold">invoice<span
+						class="text-primary-500"
+					>ly</span></span>
+					<small
+						v-if="devMode"
+						class="cursor-default select-none text-center text-[11px] font-bold text-danger"
+					>
+						DEVELOPMENT
+					</small>
+				</div>
 			</template>
 			<template #end>
 				<span class="flex flex-row items-center gap-4">

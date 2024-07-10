@@ -29,6 +29,7 @@ export const nl = {
 			houseNumber: "Huisnummer",
 			streetName: "Straat",
 			city: "Stad",
+			country: "Land",
 		},
 		messages: {
 			zipCodeNotFound: `De postcode- en huisnummercombinatie is niet gevonden in Nederland. \nVul zelf handmatig de adresgegevens in, of probeer opnieuw.`,
@@ -36,7 +37,7 @@ export const nl = {
 	},
 	companyDetails: {
 		labels: {
-			representativeName: "Bedrijfsvertegenwoordiger",
+			representativeName: "Naam bedrijfsvertegenwoordiger",
 			representativeEmail: "Email bedrijfsvertegenwoordiger",
 			companyName: "Bedrijfsnaam",
 			companyNumber: "KVK-nummer",

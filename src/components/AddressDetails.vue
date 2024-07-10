@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 import TextInput from "@/components/TextInput.vue";
 import { useInvoiceManager } from "@/composables/invoice-manager";
 import vCapitalize from "@/directives/capitalize";
@@ -9,6 +9,7 @@ const { addressDetails } = defineProps<{
 }>();
 
 const disableStreetNameField = ref(true);
+const disableCityField = ref(true);
 const disableCountryField = ref(true);
 
 const invoiceManager = useInvoiceManager();
@@ -24,6 +25,7 @@ async function fetchAddressFromZipCode(zipCode: string, number: string) {
 
 	if (!res.ok) {
 		disableStreetNameField.value = false;
+		disableCityField.value = false;
 		disableCountryField.value = false;
 
 		return;
@@ -32,6 +34,7 @@ async function fetchAddressFromZipCode(zipCode: string, number: string) {
 	const data = await res.json();
 
 	disableStreetNameField.value = true;
+	disableCityField.value = true;
 	disableCountryField.value = true;
 
 	invoiceManager.invoice[addressDetails].city = data.city;
@@ -56,6 +59,18 @@ function debounce<T extends (...args: any[]) => any>(func: T, wait: number): (..
 const handleZipFetching = debounce(() => {
 	fetchAddressFromZipCode(invoiceManager.invoice[addressDetails].zipCode, invoiceManager.invoice[addressDetails].houseNumber);
 }, 500);
+
+onMounted(() => {
+	if (
+		invoiceManager.invoice[addressDetails].zipCode
+		&& invoiceManager.invoice[addressDetails].houseNumber
+	) {
+		fetchAddressFromZipCode(
+			invoiceManager.invoice[addressDetails].zipCode,
+			invoiceManager.invoice[addressDetails].houseNumber,
+		);
+	}
+});
 </script>
 
 <template>
@@ -101,6 +116,14 @@ const handleZipFetching = debounce(() => {
 		id="city"
 		v-model="invoiceManager.invoice[addressDetails].city"
 		:label="$t('addressDetails.labels.city')"
+		required
+		:disabled="disableCityField"
+	/>
+
+	<TextInput
+		id="country"
+		v-model="invoiceManager.invoice[addressDetails].country"
+		:label="$t('addressDetails.labels.country')"
 		required
 		:disabled="disableCountryField"
 	/>

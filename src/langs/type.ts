@@ -27,6 +27,7 @@ export interface languageInterface {
 			houseNumber: string;
 			streetName: string;
 			city: string;
+			country: string;
 		};
 		messages: {
 			zipCodeNotFound: string;

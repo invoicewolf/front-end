@@ -29,6 +29,7 @@ export const en = {
 			houseNumber: "Number",
 			streetName: "Street name",
 			city: "City",
+			country: "Country",
 		},
 		messages: {
 			zipCodeNotFound: `The provided zip code and number could not be found in the Netherlands. \nPlease fill in the full address details yourself, or try again.`,

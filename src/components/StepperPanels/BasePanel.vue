@@ -17,6 +17,7 @@ defineEmits(["previous", "next"]);
 			:label="$t('general.stepper.previous')"
 			icon="pi pi-arrow-left"
 			severity="secondary"
+			data-cy="previousButton"
 			@click="$emit('previous')"
 		/>
 		<pv-button
@@ -24,6 +25,7 @@ defineEmits(["previous", "next"]);
 			icon="pi pi-arrow-right"
 			icon-pos="right"
 			:disabled="disableNextButton"
+			data-cy="nextButton"
 			@click="$emit('next')"
 		/>
 	</div>

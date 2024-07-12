@@ -33,12 +33,16 @@ const getLocaleOption = computed(() => {
 <template>
 	<pv-select
 		v-model="locale"
+		data-cy="languageSelector"
 		class="w-40"
 		:options="languageSelectorOptions" option-label="name" option-value="locale"
 		placeholder="Select a language"
 	>
 		<template #option="{ option }">
-			<span class="flex gap-1">
+			<span
+				:data-cy="`option-${option.locale}`"
+				class="flex gap-1"
+			>
 				<img :alt="option.name" :src="option.icon">
 				<span>{{ option.name }}</span>
 			</span>

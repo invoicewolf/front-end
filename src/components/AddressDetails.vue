@@ -100,6 +100,7 @@ onMounted(() => {
 		severity="warn"
 		icon="pi pi-exclamation-triangle"
 		class="w-[40rem] whitespace-pre"
+		data-cy="zipCodeNotFoundWarning"
 	>
 		{{ $t("addressDetails.messages.zipCodeNotFound") }}
 	</pv-message>

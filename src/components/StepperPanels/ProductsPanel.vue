@@ -40,6 +40,7 @@ function onCellEditComplete(event: DataTableCellEditCompleteEvent) {
 			<template #start>
 				<pv-button
 					:label="$t('products.elements.buttons.newProduct')" icon="pi pi-plus"
+					data-cy="newProductButton"
 					@click="invoice.addProduct(new Product())"
 				/>
 			</template>
@@ -54,7 +55,6 @@ function onCellEditComplete(event: DataTableCellEditCompleteEvent) {
 					}),
 				},
 			}"
-
 			edit-mode="cell"
 			@cell-edit-complete="onCellEditComplete"
 		>
@@ -62,28 +62,29 @@ function onCellEditComplete(event: DataTableCellEditCompleteEvent) {
 				field="description" :header="$t('products.table.description').toUpperCase()"
 				style="width: 30%"
 			>
-				<template #body="{ data, field }">
-					{{ data[field] }}
+				<template #body="{ data, field, index }">
+					<span :data-cy="`${field}-${index}`">{{ data[field] }}</span>
 				</template>
-				<template #editor="{ data, field }">
-					<pv-input-text v-model="data[field]" class="w-full" />
+				<template #editor="{ data, field, index }">
+					<pv-input-text v-model="data[field]" :data-cy="`${field}-editor-${index}`" class="w-full" />
 				</template>
 			</pv-column>
 			<pv-column field="amount" :header="$t('products.table.amount').toUpperCase()" style="width: 10%">
-				<template #body="{ data, field }">
-					{{ data[field] }}
+				<template #body="{ data, field, index }">
+					<span :data-cy="`${field}-${index}`">{{ data[field] }}</span>
 				</template>
-				<template #editor="{ data, field }">
-					<pv-input-number v-model="data[field]" input-class="w-full" />
+				<template #editor="{ data, field, index }">
+					<pv-input-number v-model="data[field]" input-class="w-full" :data-cy="`${field}-editor-${index}`" />
 				</template>
 			</pv-column>
 			<pv-column field="tariff" :header="$t('products.table.tariff').toUpperCase()" style="width: 10%">
-				<template #body="{ data, field }">
-					{{ formatCurrencyInvoice(data[field]) }}
+				<template #body="{ data, field, index }">
+					<span :data-cy="`${field}-${index}`">{{ formatCurrencyInvoice(data[field]) }}</span>
 				</template>
-				<template #editor="{ data, field }">
+				<template #editor="{ data, field, index }">
 					<pv-input-number
 						v-model="data[field]"
+						:data-cy="`${field}-editor-${index}`"
 						mode="currency"
 						currency="EUR"
 						locale="nl"
@@ -92,16 +93,19 @@ function onCellEditComplete(event: DataTableCellEditCompleteEvent) {
 				</template>
 			</pv-column>
 			<pv-column field="taxRate" :header="$t('products.table.taxRate').toUpperCase()" style="width: 40%">
-				<template #body="{ data, field }">
-					{{ data[field] }}%
+				<template #body="{ data, field, index }">
+					<span :data-cy="`${field}-${index}`">{{ data[field] }}%</span>
 				</template>
-				<template #editor="{ data, field }">
-					<pv-input-number v-model="data[field]" suffix="%" input-class="w-full" />
+				<template #editor="{ data, field, index }">
+					<pv-input-number
+						v-model="data[field]" suffix="%" input-class="w-full"
+						:data-cy="`${field}-editor-${index}`"
+					/>
 				</template>
 			</pv-column>
 			<pv-column field="cost" :header="$t('products.table.cost').toUpperCase()" style="width: 10%">
-				<template #body="{ data, field }">
-					{{ formatCurrencyInvoice(data[field]) }}
+				<template #body="{ data, field, index }">
+					<span :data-cy="`${field}-${index}`">{{ formatCurrencyInvoice(data[field]) }}</span>
 				</template>
 			</pv-column>
 		</pv-data-table>
@@ -111,22 +115,30 @@ function onCellEditComplete(event: DataTableCellEditCompleteEvent) {
 				<p class=" text-right">
 					{{ $t("products.table.subtotal") }}
 				</p>
-				<p>{{ invoiceManager.invoice.paymentDetails.currency }}</p>
-				<p>{{ formatCurrencyInvoice(invoice.price.subtotal) }}</p>
+				<p data-cy="subtotal-currency">
+					{{ invoiceManager.invoice.paymentDetails.currency }}
+				</p>
+				<p data-cy="subtotal">
+					{{ formatCurrencyInvoice(invoice.price.subtotal) }}
+				</p>
 
 				<p class=" text-right">
 					{{ $t("products.table.taxAmount") }}
 				</p>
-				<p>{{ invoiceManager.invoice.paymentDetails.currency }}</p>
-				<p>{{ formatCurrencyInvoice(invoice.price.taxAmount) }}</p>
+				<p data-cy="taxAmount-currency">
+					{{ invoiceManager.invoice.paymentDetails.currency }}
+				</p>
+				<p data-cy="taxAmount">
+					{{ formatCurrencyInvoice(invoice.price.taxAmount) }}
+				</p>
 
 				<p class="text-right font-bold">
 					{{ $t("products.table.totalIncludingTax") }}
 				</p>
-				<p class="font-bold">
+				<p data-cy="total-currency" class="font-bold">
 					{{ invoiceManager.invoice.paymentDetails.currency }}
 				</p>
-				<p class="font-bold">
+				<p data-cy="total" class="font-bold">
 					{{ formatCurrencyInvoice(invoice.price.total) }}
 				</p>
 			</div>

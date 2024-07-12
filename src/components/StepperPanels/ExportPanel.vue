@@ -19,8 +19,18 @@ const { pdf } = usePDF({
 				{{ $t("review.labels.save") }}
 			</h1>
 
-			<pv-button :label="$t('review.labels.saveAsPdf')" icon="pi pi-download" @click="$emit('exportToPdf')" />
-			<pv-button :label="$t('review.labels.saveAsInvoice')" icon="pi pi-save" @click="$emit('save')" />
+			<pv-button
+				:label="$t('review.labels.saveAsPdf')"
+				icon="pi pi-download"
+				data-cy="saveAsPdf"
+				@click="$emit('exportToPdf')"
+			/>
+			<pv-button
+				:label="$t('review.labels.saveAsInvoice')"
+				icon="pi pi-save"
+				data-cy="saveAsIly"
+				@click="$emit('save')"
+			/>
 		</div>
 	</div>
 </template>

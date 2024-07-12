@@ -81,7 +81,7 @@ const isValidEmail = computed(() => {
 		/>
 
 		<TextInput
-			id="taxnumber"
+			id="taxNumber"
 			v-capitalize
 			:model-value="invoiceManager.invoice.companyDetails.taxNumber"
 			:label="$t('companyDetails.labels.taxNumber')"

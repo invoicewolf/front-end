@@ -36,6 +36,7 @@ const model = defineModel({ required: true, type: String });
 			:invalid="invalid"
 			:mask="mask"
 			slot-char=""
+			:data-cy="`${id}`"
 			@blur="$emit('blur')"
 		/>
 		<pv-input-text
@@ -45,6 +46,7 @@ const model = defineModel({ required: true, type: String });
 			:class="inputClass"
 			:disabled="disabled"
 			:invalid="invalid"
+			:data-cy="`${id}`"
 			@blur="$emit('blur')"
 		/>
 		<span v-if="description" class="select-none text-sm">{{ description }}</span>
@@ -54,7 +56,7 @@ const model = defineModel({ required: true, type: String });
 			v-if="required"
 			class="text-danger"
 		>*</span></label>
-		<pv-input-group>
+		<pv-input-group :data-cy="`${id}`">
 			<pv-input-mask
 				v-if="mask"
 				:id="id"
@@ -93,6 +95,6 @@ const model = defineModel({ required: true, type: String });
 	</div>
 </template>
 
-<style scoped>
+<style>
 
 </style>

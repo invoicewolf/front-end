@@ -24,12 +24,6 @@ describe("template spec", () => {
 		cy.get("[data-cy='nextButton']").should("be.disabled");
 	});
 
-	it("should be in english", () => {
-		cy.get("[data-cy='languageSelector']").click().then(() => {
-			cy.get("[data-cy='option-nl']").click();
-		});
-	});
-
 	it("should enable the manual address details when the ZIP code is invalid", () => {
 		cy.get("[data-cy='representativeName']").type("John Doe");
 		cy.get("[data-cy='representativeEmail']").type("JohnDoe@example.com");

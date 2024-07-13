@@ -118,7 +118,5 @@ describe("template spec", () => {
 		cy.get("[data-cy='invoiceNumber']").type("00001");
 
 		cy.get("[data-cy='nextButton']").click();
-
-		cy.get("[data-cy='saveAsPdf']").click();
 	});
 });

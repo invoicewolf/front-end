@@ -22,10 +22,7 @@ jobs:
       - name: Install packages
         run: pnpm install
 
-      - name: Format PNPM
-        run: pnpm format
-
-      - name: Run linting
+      - name: Run lint
         run: pnpm run lint
 
       - name: Generate eslint report

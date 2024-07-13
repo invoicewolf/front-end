@@ -297,12 +297,9 @@ export class InvoiceManager {
 		const date1 = this.invoice.paymentDetails.invoiceDate;
 		const date2 = this.invoice.paymentDetails.dueDate;
 
-		const Difference_In_Time
-            = date2.getTime() - date1.getTime();
+		const Difference_In_Time = date2.getTime() - date1.getTime();
 
-		const Difference_In_Days
-            = Math.round
-            (Difference_In_Time / (1000 * 3600 * 24));
+		const Difference_In_Days = Math.round(Difference_In_Time / (1000 * 3600 * 24));
 
 		drawText(i18n.global.t("invoice.termsAndConditions"), boldText);
 		drawText(i18n.global.t("invoice.allPricesExcludeVAT"));

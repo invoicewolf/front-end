@@ -1,12 +1,12 @@
 {
-  "postcode": "1234AB",
-  "number": 1,
-  "street": "Placeholder street",
-  "city": "Placeholder city",
-  "municipality": "Placeholder municipality",
-  "province": "Placeholder province",
-  "geo": {
-    "lat": 52.083933372822,
-    "lon": 5.1257797899085
-  }
+	"postcode": "1234AB",
+	"number": 1,
+	"street": "Placeholder street",
+	"city": "Placeholder city",
+	"municipality": "Placeholder municipality",
+	"province": "Placeholder province",
+	"geo": {
+		"lat": 52.083933372822,
+		"lon": 5.1257797899085
+	}
 }

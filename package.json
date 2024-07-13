@@ -1,45 +1,45 @@
 {
-  "name": "invoice-generator",
-  "version": "0.0.0",
-  "private": true,
-  "scripts": {
-    "dev": "vite",
-    "build": "run-p type-check \"build-only {@}\" --",
-    "preview": "vite preview",
-    "build-only": "vite build",
-    "type-check": "vue-tsc --build --force",
-    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
-    "lint:fix": "eslint . --fix",
-    "lint:output": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore --output-file eslint-report.json --format json"
-  },
-  "dependencies": {
-    "@primevue/themes": "4.0.0-rc.2",
-    "@tato30/vue-pdf": "^1.10.0",
-    "@vuepic/vue-datepicker": "^8.8.1",
-    "@vueuse/core": "^10.11.0",
-    "pdf-lib": "^1.17.1",
-    "primeicons": "^7.0.0",
-    "primevue": "4.0.0-rc.2",
-    "vue": "^3.4.31",
-    "vue-i18n": "^9.13.1"
-  },
-  "devDependencies": {
-    "@antfu/eslint-config": "^2.21.2",
-    "@eslint/eslintrc": "^3.1.0",
-    "@tsconfig/node20": "^20.1.4",
-    "@types/node": "^20.14.9",
-    "@vitejs/plugin-vue": "^5.0.5",
-    "@vue/tsconfig": "^0.5.1",
-    "autoprefixer": "^10.4.19",
-    "cypress": "^13.13.0",
-    "eslint": "^9.6.0",
-    "eslint-plugin-tailwindcss": "^3.17.4",
-    "npm-run-all2": "^6.2.2",
-    "postcss": "^8.4.39",
-    "tailwindcss": "^3.4.4",
-    "typescript": "~5.4.5",
-    "vite": "^5.3.3",
-    "vite-plugin-vue-devtools": "^7.3.5",
-    "vue-tsc": "^2.0.24"
-  }
+	"name": "invoice-generator",
+	"version": "0.0.0",
+	"private": true,
+	"scripts": {
+		"dev": "vite",
+		"build": "run-p type-check \"build-only {@}\" --",
+		"preview": "vite preview",
+		"build-only": "vite build",
+		"type-check": "vue-tsc --build --force",
+		"lint": "eslint . **/*.{vue,mjs,ts} --fix --ignore-pattern .gitignore",
+		"lint:fix": "eslint . --fix",
+		"lint:output": "eslint . **/*.{vue,mjs,ts} --fix --ignore-path .gitignore --output-file eslint-report.json --format json"
+	},
+	"dependencies": {
+		"@primevue/themes": "4.0.0-rc.2",
+		"@tato30/vue-pdf": "^1.10.0",
+		"@vuepic/vue-datepicker": "^8.8.1",
+		"@vueuse/core": "^10.11.0",
+		"pdf-lib": "^1.17.1",
+		"primeicons": "^7.0.0",
+		"primevue": "4.0.0-rc.2",
+		"vue": "^3.4.31",
+		"vue-i18n": "^9.13.1"
+	},
+	"devDependencies": {
+		"@antfu/eslint-config": "^2.21.2",
+		"@eslint/eslintrc": "^3.1.0",
+		"@tsconfig/node20": "^20.1.4",
+		"@types/node": "^20.14.9",
+		"@vitejs/plugin-vue": "^5.0.5",
+		"@vue/tsconfig": "^0.5.1",
+		"autoprefixer": "^10.4.19",
+		"cypress": "^13.13.0",
+		"eslint": "^9.6.0",
+		"eslint-plugin-tailwindcss": "^3.17.4",
+		"npm-run-all2": "^6.2.2",
+		"postcss": "^8.4.39",
+		"tailwindcss": "^3.4.4",
+		"typescript": "~5.4.5",
+		"vite": "^5.3.3",
+		"vite-plugin-vue-devtools": "^7.3.5",
+		"vue-tsc": "^2.0.24"
+	}
 }

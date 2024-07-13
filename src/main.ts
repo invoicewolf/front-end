@@ -1,7 +1,5 @@
 import "./assets/main.css";
 
-import { en } from "@/langs/en";
-import { nl } from "@/langs/nl";
 import { definePreset } from "@primevue/themes";
 import Aura from "@primevue/themes/aura";
 import VueDatePicker from "@vuepic/vue-datepicker";
@@ -33,6 +31,9 @@ import Toolbar from "primevue/toolbar";
 import { createApp } from "vue";
 import { createI18n } from "vue-i18n";
 import App from "./App.vue";
+
+import { en } from "@/langs/en";
+import { nl } from "@/langs/nl";
 
 const app = createApp(App);
 

@@ -10,9 +10,9 @@ jobs:
     uses: ./.github/workflows/lint.yml
 
   build-test:
-    needs: [ lint ]
+    needs: [lint]
     uses: ./.github/workflows/build_test.yml
 
   e2e-test:
-    needs: [ build-test ]
+    needs: [build-test]
     uses: ./.github/workflows/e2e_test.yml

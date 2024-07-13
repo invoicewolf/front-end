@@ -1,6 +1,6 @@
 name: E2E Test
 
-on: push
+on: [ workflow_call ]
 
 jobs:
   cypress-run:

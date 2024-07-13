@@ -15,4 +15,4 @@ jobs:
 
   e2e-test:
     needs: [ build-test ]
-    uses: ./.github/workflows/e2e-test.yml
+    uses: ./.github/workflows/e2e_test.yml

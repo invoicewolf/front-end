@@ -1,0 +1,15 @@
+name: On pull request
+
+on: [ pull_request ]
+
+jobs:
+  lint:
+    uses: ./.github/workflows/lint.yml
+
+  build-test:
+    needs: [ lint ]
+    uses: ./.github/workflows/build_test.yml
+
+  e2e-test:
+    needs: [ build-test ]
+    uses: ./.github/workflows/e2e-test.yml

@@ -10,7 +10,7 @@
 		"type-check": "vue-tsc --build --force",
 		"lint": "eslint . **/*.{vue,mjs,ts} --fix --ignore-pattern .gitignore",
 		"lint:fix": "eslint . --fix",
-		"lint:output": "eslint . **/*.{vue,mjs,ts} --fix --ignore-path .gitignore --output-file eslint-report.json --format json"
+		"lint:output": "eslint . **/*.{vue,mjs,ts} --fix --ignore-pattern .gitignore --output-file eslint-report.json --format json"
 	},
 	"dependencies": {
 		"@primevue/themes": "4.0.0-rc.2",

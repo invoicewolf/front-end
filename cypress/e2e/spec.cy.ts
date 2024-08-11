@@ -113,8 +113,6 @@ describe("template spec", () => {
 			cy.get("[data-cy='subtotal']").should("have.text", "€100.00");
 			cy.get("[data-cy='taxAmount']").should("have.text", "€21.00");
 			cy.get("[data-cy='total']").should("have.text", "€121.00");
-
-			cy.get("[data-cy='nextButton']").click();
 		});
 	});
 });

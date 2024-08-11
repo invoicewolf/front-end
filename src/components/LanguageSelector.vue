@@ -4,15 +4,23 @@ import { useI18n } from "vue-i18n";
 
 const i18n = useI18n();
 
-const languageSelectorOptions = [{
-	name: "English",
-	locale: "en",
-	icon: "https://flagsapi.com/GB/flat/24.png",
-}, {
-	name: "Dutch",
-	locale: "nl",
-	icon: "https://flagsapi.com/NL/flat/24.png",
-}];
+const languageSelectorOptions = [
+	{
+		name: "English (US)",
+		locale: "enUS",
+		icon: "https://flagsapi.com/US/flat/24.png",
+	},
+	{
+		name: "English (UK)",
+		locale: "enGB",
+		icon: "https://flagsapi.com/GB/flat/24.png",
+	},
+	{
+		name: "Nederlands",
+		locale: "nlNL",
+		icon: "https://flagsapi.com/NL/flat/24.png",
+	},
+];
 
 const locale = ref(i18n.locale.value);
 
@@ -34,7 +42,7 @@ const getLocaleOption = computed(() => {
 	<pv-select
 		v-model="locale"
 		data-cy="languageSelector"
-		class="w-40"
+		class="w-48"
 		:options="languageSelectorOptions" option-label="name" option-value="locale"
 		placeholder="Select a language"
 	>

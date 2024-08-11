@@ -12,17 +12,30 @@ defineProps<{
 	invalid?: boolean;
 	mask?: string;
 	number?: boolean;
+	password?: boolean;
+	passwordFeedback?: boolean;
+	skeleton?: boolean;
+	skeletonWidth?: string;
+	capitalize?: boolean;
 }>();
 
 defineEmits<{
 	(e: "blur"): void;
 }>();
 
-const model = defineModel({ required: true, type: String });
+const model = defineModel<string | undefined>({ required: true });
 </script>
 
 <template>
-	<div v-if="!enableGroup" class="flex flex-col gap-2">
+	<div v-if="skeleton" class="flex flex-col gap-2">
+		<label :for="id" class=" select-none font-medium" :class="labelClass">{{ label }}<span
+			v-if="required"
+			class="text-danger"
+		>*</span></label>
+		<pv-skeleton height="2.6rem" :width="skeletonWidth" />
+		<span v-if="description" class="select-none text-sm">{{ description }}</span>
+	</div>
+	<div v-else-if="!enableGroup" class="flex flex-col gap-2">
 		<label :for="id" class=" select-none font-medium" :class="labelClass">{{ label }}<span
 			v-if="required"
 			class="text-danger"
@@ -37,6 +50,29 @@ const model = defineModel({ required: true, type: String });
 			:mask="mask"
 			slot-char=""
 			:data-cy="`${id}`"
+			@blur="$emit('blur')"
+		/>
+		<pv-password
+			v-else-if="password"
+			v-model="model"
+			:feedback="passwordFeedback"
+			:disabled="disabled"
+			:invalid="invalid"
+			:input-class="inputClass"
+			:data-cy="`${id}`"
+			@blur="$emit('blur')"
+		/>
+		<pv-input-number
+			v-else-if="number"
+			:id="id"
+			:model-value="Number(model)"
+			:class="inputClass"
+			:disabled="disabled"
+			:invalid="invalid"
+			:data-cy="`${id}`"
+			:use-grouping="false"
+			fluid
+			@update:model-value="(val: number) => model = val.toString()"
 			@blur="$emit('blur')"
 		/>
 		<pv-input-text

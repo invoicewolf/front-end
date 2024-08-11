@@ -1,24 +1,19 @@
-import type { Currencies } from "@/utils/typings/currencies";
+import { BasePaymentDetails, type IBasePaymentDetails } from "@/utils/BasePaymentDetails";
 
-interface IPaymentDetails {
-	iban: string;
-	currency: Currencies;
+export interface IPaymentDetails extends IBasePaymentDetails {
 	invoiceDate: Date;
 	dueDate: Date;
 	invoiceNumber: string;
 }
 
-export class PaymentDetails implements IPaymentDetails {
-	iban: string = "";
-	currency: Currencies = "€";
+export class PaymentDetails extends BasePaymentDetails implements IPaymentDetails {
 	invoiceDate: Date = new Date(new Date().setUTCHours(0, 0, 0, 0));
 	dueDate: Date = new Date(new Date(new Date().setMonth(new Date().getMonth() + 1)).setUTCHours(0, 0, 0, 0));
 	invoiceNumber: string = "";
 
-	constructor(paymentDetails?: IPaymentDetails) {
-		if (paymentDetails) {
-			this.iban = paymentDetails.iban;
-			this.currency = paymentDetails.currency;
+	constructor(paymentDetails?: IBasePaymentDetails | IPaymentDetails) {
+		super(paymentDetails);
+		if (paymentDetails && "invoiceDate" in paymentDetails) {
 			this.invoiceDate = new Date(paymentDetails.invoiceDate);
 			this.dueDate = new Date(paymentDetails.dueDate);
 			this.invoiceNumber = paymentDetails.invoiceNumber;
@@ -26,8 +21,7 @@ export class PaymentDetails implements IPaymentDetails {
 	}
 
 	reset() {
-		this.iban = "";
-		this.currency = "€";
+		super.reset();
 		this.invoiceDate = new Date(new Date().setUTCHours(0, 0, 0, 0));
 		this.dueDate = new Date(new Date(new Date().setMonth(new Date().getMonth() + 1)).setUTCHours(0, 0, 0, 0));
 		this.invoiceNumber = "";

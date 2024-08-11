@@ -1,4 +1,5 @@
 import { formatCurrencyInvoice } from "@/utils/helpers/format-currency-invoice";
+import type { CurrencyStrings } from "@/utils/typings/currencies";
 
 export interface IPrice {
 	subtotal: number;
@@ -19,11 +20,11 @@ export class Price implements IPrice {
 		}
 	}
 
-	getFormattedPrice() {
+	getFormattedPrice(currency: CurrencyStrings, addCurrencySymbol: boolean) {
 		return {
-			subtotal: formatCurrencyInvoice(this.subtotal),
-			taxAmount: formatCurrencyInvoice(this.taxAmount),
-			total: formatCurrencyInvoice(this.total),
+			subtotal: formatCurrencyInvoice(this.subtotal, currency, addCurrencySymbol),
+			taxAmount: formatCurrencyInvoice(this.taxAmount, currency, addCurrencySymbol),
+			total: formatCurrencyInvoice(this.total, currency, addCurrencySymbol),
 		};
 	}
 }

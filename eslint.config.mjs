@@ -10,6 +10,7 @@ export default antfu(
 			quotes: "double",
 			semi: true,
 		},
+		ignores: ["src/utils/client/**/*.ts"],
 	},
 	...compat.config({
 		extends: ["plugin:tailwindcss/recommended"],

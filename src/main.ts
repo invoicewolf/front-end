@@ -218,7 +218,7 @@ app.use(pinia);
 app.use(router);
 
 const client = createClient({
-	baseUrl: "http://localhost:3000",
+	baseUrl: import.meta.env.VITE_API_URL,
 });
 
 client.interceptors.request.use((request) => {

@@ -107,7 +107,7 @@ watch(i18n.locale, () => {
 
 watch(activeStep, () => {
 	refreshPdf();
-	scrollTo({ top, behavior: "smooth" });
+	scrollTo({ top: 0, behavior: "smooth" });
 });
 </script>
 

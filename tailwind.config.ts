@@ -33,8 +33,8 @@ const config: Config = {
 					900: "var(--pv-surface-900)",
 					950: "var(--pv-surface-950)",
 				},
-				danger: "var(--pv-button-text-danger-color)",
-				success: "var(--pv-button-text-success-color)",
+				danger: "var(--pv-red-500)",
+				success: "var(--pv-green-500)",
 			},
 		},
 		fontFamily: {

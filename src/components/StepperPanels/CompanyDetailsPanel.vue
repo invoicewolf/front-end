@@ -1,103 +1,36 @@
 <script setup lang="ts">
-import { computed } from "vue";
-import AddressDetails from "@/components/AddressDetails.vue";
-import TextInput from "@/components/TextInput.vue";
+import { onMounted, ref } from "vue";
+import CompanyDetailsForm from "@/components/Forms/CompanyDetailsForm.vue";
 import { useInvoiceManager } from "@/composables/invoice-manager";
-import vCapitalize from "@/directives/capitalize";
+import { useCompanyStore } from "@/stores/useCompanyStore";
 
 const invoiceManager = useInvoiceManager();
 
-function onCompanyNumberChange(val: string) {
-	if (val.length > 0) {
-		invoiceManager.invoice.companyDetails.companyNumber = val;
+const disableAllFields = ref(false);
+
+async function fetchCompanyDetails() {
+	const companyStore = useCompanyStore();
+
+	if (companyStore.company.id === -1) {
+		await companyStore.get();
 	}
-	else {
-		invoiceManager.invoice.companyDetails.companyNumber = undefined;
-	}
+
+	invoiceManager.invoice.companyDetails = companyStore.company;
+
+	disableAllFields.value = true;
 }
 
-function onTaxNumberChange(val: string) {
-	if (val.length > 0) {
-		invoiceManager.invoice.companyDetails.taxNumber = val;
+onMounted(() => {
+	if (localStorage.getItem("access_token")) {
+		fetchCompanyDetails();
 	}
-	else {
-		invoiceManager.invoice.companyDetails.taxNumber = undefined;
-	}
-}
-
-const isValidCompanyNumber = computed(() => {
-	return (
-		!!invoiceManager.invoice.companyDetails.companyNumber
-		&& invoiceManager.invoice.companyDetails.companyNumber.length === 8
-	);
-});
-
-const isValidTaxNumber = computed(() => {
-	return (
-		!!invoiceManager.invoice.companyDetails.taxNumber
-		&& invoiceManager.invoice.companyDetails.taxNumber.length === 14
-	);
-});
-
-const isValidEmail = computed(() => {
-	return invoiceManager.invoice.companyDetails.isValidEmail();
 });
 </script>
 
 <template>
-	<div class="mb-6 flex flex-col gap-6 sm:w-72">
-		<TextInput
-			id="representativeName"
-			v-model="invoiceManager.invoice.companyDetails.representativeName"
-			:label="$t('companyDetails.labels.representativeName')"
-			required
-		/>
-
-		<TextInput
-			id="representativeEmail"
-			v-model="invoiceManager.invoice.companyDetails.representativeEmail"
-			:label="$t('companyDetails.labels.representativeEmail')"
-			required
-			enable-group
-			:invalid="!isValidEmail"
-		/>
-
-		<TextInput
-			id="companyName"
-			v-model="invoiceManager.invoice.companyDetails.companyName"
-			:label="$t('companyDetails.labels.companyName')"
-			required
-		/>
-
-		<TextInput
-			id="companyNumber"
-			:model-value="invoiceManager.invoice.companyDetails.companyNumber"
-			:label="$t('companyDetails.labels.companyNumber')"
-			:description="$t('companyDetails.descriptions.notAddingCompanyNumber')"
-			enable-group
-			mask="99999999"
-			:invalid="!isValidCompanyNumber"
-			@update:model-value="onCompanyNumberChange"
-		/>
-
-		<TextInput
-			id="taxNumber"
-			v-capitalize
-			:model-value="invoiceManager.invoice.companyDetails.taxNumber"
-			:label="$t('companyDetails.labels.taxNumber')"
-			:description="$t('companyDetails.descriptions.notAddingTaxNumber')"
-			enable-group
-			mask="aa999999999a99"
-			:invalid="!isValidTaxNumber"
-			@update:model-value="onTaxNumberChange"
-		/>
-
-		<AddressDetails address-details="companyDetails" />
+	<div class="max-w-sm">
+		<CompanyDetailsForm v-model="invoiceManager.invoice.companyDetails" :disable-fields="disableAllFields" />
 	</div>
-
-	<p class="select-none">
-		<span class="text-danger">*</span>{{ $t("general.forms.requiredExplanation") }}
-	</p>
 </template>
 
 <style scoped>

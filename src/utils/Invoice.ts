@@ -5,19 +5,19 @@ import { Price } from "@/utils/Prices";
 import { Product } from "@/utils/Product";
 
 export interface IInvoice {
-	readonly companyDetails: CompanyDetails;
-	readonly addresseeDetails: AddresseeDetails;
-	readonly products: Product[];
-	readonly price: Price;
-	readonly paymentDetails: PaymentDetails;
+	companyDetails: CompanyDetails;
+	addresseeDetails: AddresseeDetails;
+	products: Product[];
+	price: Price;
+	paymentDetails: PaymentDetails;
 }
 
 export class Invoice implements IInvoice {
-	readonly companyDetails: CompanyDetails = new CompanyDetails();
-	readonly addresseeDetails: AddresseeDetails = new AddresseeDetails();
-	readonly products: Product[] = [];
-	readonly price: Price = new Price();
-	readonly paymentDetails: PaymentDetails = new PaymentDetails();
+	companyDetails: CompanyDetails = new CompanyDetails();
+	addresseeDetails: AddresseeDetails = new AddresseeDetails();
+	products: Product[] = [];
+	price: Price = new Price();
+	paymentDetails: PaymentDetails = new PaymentDetails();
 
 	constructor(invoice?: IInvoice) {
 		if (invoice) {
@@ -51,12 +51,12 @@ export class Invoice implements IInvoice {
 		return this;
 	}
 
-	getFormattedProducts() {
-		return this.products.map(product => product.getFormattedProduct());
+	getFormattedProducts(addCurrencySymbol = true) {
+		return this.products.map(product => product.getFormattedProduct(this.paymentDetails.currency, addCurrencySymbol));
 	}
 
-	getFormattedPrice() {
-		return this.price.getFormattedPrice();
+	getFormattedPrice(addCurrencySymbol = true) {
+		return this.price.getFormattedPrice(this.paymentDetails.currency, addCurrencySymbol);
 	}
 
 	reset() {

@@ -1,16 +1,15 @@
 import { AddressDetails, type IAddressDetails } from "@/utils/AddressDetails";
+import { validateEmail } from "@/utils/helpers/validate-email";
 
-interface ICompanyDetails extends IAddressDetails {
-	representativeName: string;
-	representativeEmail: string;
+export interface ICompanyDetails extends IAddressDetails {
+	companyEmail: string;
 	companyName: string;
 	companyNumber?: string;
 	taxNumber?: string;
 }
 
 export class CompanyDetails extends AddressDetails implements ICompanyDetails {
-	representativeName: string = "";
-	representativeEmail: string = "";
+	companyEmail: string = "";
 	companyName: string = "";
 	companyNumber?: string = undefined;
 	taxNumber?: string = undefined;
@@ -18,11 +17,11 @@ export class CompanyDetails extends AddressDetails implements ICompanyDetails {
 	constructor(companyDetails?: ICompanyDetails) {
 		super(companyDetails);
 		if (companyDetails) {
-			this.representativeName = companyDetails.representativeName;
-			this.representativeEmail = companyDetails.representativeEmail;
+			this.companyEmail = companyDetails.companyEmail;
 			this.companyName = companyDetails.companyName;
 			this.companyNumber = companyDetails.companyNumber;
 			this.taxNumber = companyDetails.taxNumber;
+			this.addition = companyDetails.addition;
 			this.streetName = companyDetails.streetName;
 			this.houseNumber = companyDetails.houseNumber;
 			this.zipCode = companyDetails.zipCode;
@@ -31,8 +30,7 @@ export class CompanyDetails extends AddressDetails implements ICompanyDetails {
 	}
 
 	reset() {
-		this.representativeName = "";
-		this.representativeEmail = "";
+		this.companyEmail = "";
 		this.companyName = "";
 		this.companyNumber = undefined;
 		this.taxNumber = undefined;
@@ -40,10 +38,6 @@ export class CompanyDetails extends AddressDetails implements ICompanyDetails {
 	}
 
 	isValidEmail() {
-		return this.representativeEmail
-			.toLowerCase()
-			.match(
-				/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\])|(([a-z\-0-9]+\.)+[a-z]{2,}))$/i,
-			);
+		return validateEmail(this.companyEmail);
 	}
 }

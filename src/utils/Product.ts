@@ -1,4 +1,5 @@
 import { formatCurrencyInvoice } from "@/utils/helpers/format-currency-invoice";
+import type { CurrencyStrings } from "@/utils/typings/currencies";
 
 export interface IProduct {
 	description: string;
@@ -29,15 +30,15 @@ export class Product implements IProduct {
 		this.cost = this.tariff * this.amount;
 	}
 
-	getFormattedProduct() {
+	getFormattedProduct(currency: CurrencyStrings, addCurrencySymbol: boolean) {
 		this.calculateCost();
 
 		return {
 			description: this.description,
 			amount: `${this.amount}`,
-			tariff: formatCurrencyInvoice(this.tariff),
+			tariff: formatCurrencyInvoice(this.tariff, currency, addCurrencySymbol),
 			taxRate: `${this.taxRate}%`,
-			cost: formatCurrencyInvoice(this.cost),
+			cost: formatCurrencyInvoice(this.cost, currency, addCurrencySymbol),
 		};
 	}
 }

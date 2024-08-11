@@ -8,7 +8,7 @@ defineEmits(["previous", "next"]);
 </script>
 
 <template>
-	<div class="size-full rounded-lg border-2 border-dashed border-surface-200 bg-surface-100 p-10 dark:border-surface-800 dark:bg-surface-900">
+	<div class="size-full">
 		<slot />
 	</div>
 	<div class="mt-4 flex w-full justify-between">

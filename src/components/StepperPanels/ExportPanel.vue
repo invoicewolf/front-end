@@ -13,22 +13,22 @@ const { pdf } = usePDF({
 
 <template>
 	<div class="grid grid-cols-2">
-		<VuePDF :pdf="pdf" />
+		<VuePDF :pdf="pdf" class="drop-shadow" />
 		<div class="flex w-56 flex-col gap-4">
 			<h1 class="text select-none text-4xl font-medium">
-				{{ $t("review.labels.save") }}
+				{{ $t("export.save") }}
 			</h1>
 
 			<pv-button
-				:label="$t('review.labels.saveAsPdf')"
+				:label="$t('export.labels.saveAsPdf')"
 				icon="pi pi-download"
 				data-cy="saveAsPdf"
 				@click="$emit('exportToPdf')"
 			/>
 			<pv-button
-				:label="$t('review.labels.saveAsInvoice')"
+				:label="$t('export.labels.saveAsInvoice')"
 				icon="pi pi-save"
-				data-cy="saveAsIly"
+				data-cy="saveAsIw"
 				@click="$emit('save')"
 			/>
 		</div>

@@ -1,7 +1,6 @@
 import { getAuth } from "firebase/auth";
 import { createRouter, createWebHistory } from "vue-router";
 import { refreshToken } from "@/utils/helpers/refreshToken";
-import UnauthorizedView from "@/views/UnauthorizedView.vue";
 import type { roles } from "@/utils/authorizationHelper";
 import { getRoles } from "@/utils/authorizationHelper";
 
@@ -54,7 +53,14 @@ export const router = createRouter({
 		{
 			path: "/403",
 			name: "403",
-			component: UnauthorizedView,
+			component: () => import("@/views/UnauthorizedView.vue"),
+		},
+		{
+			path: "/privacy-policy",
+			name: "Privacy policy",
+			components: {
+				default: () => import("@/views/PrivacyPolicyView.vue"),
+			},
 		},
 	],
 });

@@ -30,7 +30,21 @@ const devMode = import.meta.env.DEV;
 		</div>
 	</div>
 	<div v-else-if="arrangement === 'vertical'">
-		<div v-if="size === 'large'" class="flex flex-col items-center gap-2">
+		<div v-if="size === 'normal'" class="flex flex-col items-center gap-2">
+			<WolfIcon v-if="!noLogo" :color="useCssVar('--pv-primary-500').value" class="size-32" />
+			<div class="flex flex-col justify-center">
+				<span class="select-none text-4xl font-bold">Invoice<span
+					class="text-primary-500"
+				>Wolf <span v-if="free" class="align-bottom text-xs">FREE</span></span></span>
+				<small
+					v-if="devMode"
+					class="select-none text-center font-bold text-danger"
+				>
+					DEVELOPMENT
+				</small>
+			</div>
+		</div>
+		<div v-else-if="size === 'large'" class="flex flex-col items-center gap-2">
 			<WolfIcon v-if="!noLogo" :color="useCssVar('--pv-primary-500').value" class="size-48" />
 			<div class="flex flex-col justify-center">
 				<span class="select-none text-6xl font-bold">Invoice<span

@@ -215,6 +215,8 @@ export interface languageInterface {
 		};
 		dontWantToUseAccount: string;
 		useFreeVersion: string;
+		agreeBySignIn: string;
+		privacyPolicy: string;
 		toasts: {
 			verifyEmail: toast;
 		};

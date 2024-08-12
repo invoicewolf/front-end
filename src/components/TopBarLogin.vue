@@ -14,9 +14,7 @@ import LanguageSelector from "@/components/LanguageSelector.vue";
 			}"
 		>
 			<template #start>
-				<router-link to="/">
-					<InvoiceWolfNameLogo arrangement="horizontal" size="normal" />
-				</router-link>
+				<InvoiceWolfNameLogo arrangement="horizontal" size="normal" />
 			</template>
 			<template #end>
 				<span class="flex flex-row items-center gap-4">

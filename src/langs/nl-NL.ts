@@ -22,7 +22,7 @@ export const nlNL = {
 			previous: "Vorige",
 		},
 		forms: {
-			requiredExplanation: "Deze velden zijn verplicht om in te vullen",
+			requiredExplanation: "Verplicht",
 		},
 		currency: "Valuta",
 	},
@@ -217,6 +217,8 @@ export const nlNL = {
 		},
 		dontWantToUseAccount: "Wilt u geen account gebruiken?",
 		useFreeVersion: "Gebruik de gratis versie",
+		agreeBySignIn: "Met het inloggen gaat u akkoord met onze",
+		privacyPolicy: "privacyvoorwaarden",
 		toasts: {
 			verifyEmail: {
 				summary: "Verifiëer e-mailadres",

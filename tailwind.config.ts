@@ -5,6 +5,9 @@ const config: Config = {
 	darkMode: "class",
 	theme: {
 		extend: {
+			listStyleType: {
+				dash: "'-'",
+			},
 			colors: {
 				primary: {
 					50: "var(--pv-primary-50)",

@@ -228,6 +228,13 @@ async function forgotPassword() {
 										{{ $t("login.useFreeVersion") }}
 									</router-link>
 								</p>
+
+								<p class="text-sm">
+									{{ $t("login.agreeBySignIn") }}
+									<router-link to="/privacy-policy" class="text-sm text-primary-500 hover:underline">
+										{{ $t("login.privacyPolicy") }}
+									</router-link>
+								</p>
 							</div>
 						</form>
 					</template>
@@ -293,6 +300,13 @@ async function forgotPassword() {
 									{{ $t("login.dontWantToUseAccount") }}
 									<router-link to="/create-invoice" class="text-sm text-primary-500 hover:underline">
 										{{ $t("login.useFreeVersion") }}
+									</router-link>
+								</p>
+
+								<p class="text-sm">
+									{{ $t("login.agreeBySignIn") }}
+									<router-link to="/privacy-policy" class="text-sm text-primary-500 hover:underline">
+										{{ $t("login.privacyPolicy") }}
 									</router-link>
 								</p>
 							</form>

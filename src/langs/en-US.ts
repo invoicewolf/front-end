@@ -22,7 +22,7 @@ export const enUS = {
 			previous: "Previous",
 		},
 		forms: {
-			requiredExplanation: "These fields are required to be filled",
+			requiredExplanation: "Required",
 		},
 		currency: "Currency",
 	},
@@ -217,6 +217,8 @@ export const enUS = {
 		},
 		dontWantToUseAccount: "Don't want to use an account?",
 		useFreeVersion: "Use the free version",
+		agreeBySignIn: "By signing in you agree to our",
+		privacyPolicy: "privacy policy",
 		toasts: {
 			verifyEmail: {
 				summary: "Verify email address",

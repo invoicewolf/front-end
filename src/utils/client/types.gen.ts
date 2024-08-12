@@ -154,6 +154,16 @@ export type GetCurrentUserProfileResponse = ProfileDto;
 
 export type GetCurrentUserProfileError = unknown;
 
+export type GetUserExistsByEmailData = {
+    path: {
+        email: string;
+    };
+};
+
+export type GetUserExistsByEmailResponse = boolean;
+
+export type GetUserExistsByEmailError = unknown;
+
 export type CreateCompanyData = {
     body: CreateCompanyDto;
 };
@@ -276,6 +286,14 @@ export type $OpenApiTs = {
         get: {
             res: {
                 '200': ProfileDto;
+            };
+        };
+    };
+    '/users/{email}/exists': {
+        get: {
+            req: GetUserExistsByEmailData;
+            res: {
+                '200': boolean;
             };
         };
     };

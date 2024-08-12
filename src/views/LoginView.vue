@@ -19,7 +19,7 @@ import TextInput from "@/components/TextInput.vue";
 import { useCompanyStore } from "@/stores/useCompanyStore";
 import { usePaymentStore } from "@/stores/usePaymentDetailsStore";
 import { useProfileStore } from "@/stores/useProfileStore";
-import { createUser } from "@/utils/client";
+import { createUser, getUserExistsByEmail } from "@/utils/client";
 import { debounce } from "@/utils/helpers/debounce";
 import { refreshToken } from "@/utils/helpers/refreshToken";
 import { sleep } from "@/utils/helpers/sleep";
@@ -161,13 +161,30 @@ async function handlePostSignUp(id: string) {
 }
 
 const passwordEmailSent = ref(false);
+const userNotFound = ref(false);
 
 async function forgotPassword() {
 	disableForgotPasswordButton.value = true;
+	userNotFound.value = false;
+
+	const userExists = await getUserExistsByEmail({ path: { email: email.value } });
+
+	if (!userExists.data) {
+		disableForgotPasswordButton.value = false;
+
+		return userNotFound.value = true;
+	}
 
 	await sendPasswordResetEmail(auth, email.value);
 
 	await sleep(2000);
+
+	toast.add({
+		summary: i18n.t("login.forgotPassword.toasts.emailSent.summary"),
+		detail: i18n.t("login.forgotPassword.toasts.emailSent.detail"),
+		severity: "info",
+		life: 5000,
+	});
 
 	passwordEmailSent.value = true;
 }
@@ -346,8 +363,12 @@ async function forgotPassword() {
 									v-else
 									class="w-full"
 									:label="$t('login.forgotPassword.buttons.backToSignIn')"
-									@click="step = 'signIn'"
+									@click="step = 'signIn'; passwordEmailSent = false; disableForgotPasswordButton = false;"
 								/>
+
+								<pv-message v-if="userNotFound" icon="pi pi-times-circle" severity="error">
+									{{ $t("login.forgotPassword.messages.emailDoesNotExist") }}
+								</pv-message>
 
 								<p class="text-sm">
 									{{ $t("login.forgotPassword.rememberPassword") }}

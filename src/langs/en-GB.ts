@@ -193,6 +193,15 @@ export const enGB = {
 				resetPassword: "Reset password",
 				backToSignIn: "Back to sign in",
 			},
+			messages: {
+				emailDoesNotExist: "No user with that email exists",
+			},
+			toasts: {
+				emailSent: {
+					summary: "Forgot password",
+					detail: "Please change your password using the email in your inbox",
+				},
+			},
 			rememberPassword: "Remembered your password?",
 			signIn: "Sign in",
 		},
@@ -222,13 +231,13 @@ export const enGB = {
 		toasts: {
 			verifyEmail: {
 				summary: "Verify email address",
-				detail: "Please verify your email address using the email in your inbox.",
+				detail: "Please verify your email address using the email in your inbox",
 			},
 		},
 	},
 	home: {
 		hello: "Hello {user}!",
-		pressButtonToStart: "Press the button below to start the invoice builder.",
+		pressButtonToStart: "Press the button below to start the invoice builder",
 		createInvoiceButton: "Create invoice",
 	},
 	profile: {

@@ -191,6 +191,12 @@ export interface languageInterface {
 				resetPassword: string;
 				backToSignIn: string;
 			};
+			messages: {
+				emailDoesNotExist: string;
+			};
+			toasts: {
+				emailSent: toast;
+			};
 			rememberPassword: string;
 			signIn: string;
 		};

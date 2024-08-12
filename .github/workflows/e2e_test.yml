@@ -14,6 +14,8 @@ jobs:
 
       - name: Cypress run
         uses: cypress-io/github-action@v6
+        env:
+          VITE_API_URL: http://localhost:3000
         with:
           start: pnpm run dev
           browser: chrome

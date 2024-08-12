@@ -193,6 +193,15 @@ export const nlNL = {
 				resetPassword: "Herstel wachtwoord",
 				backToSignIn: "Terug naar inloggen",
 			},
+			messages: {
+				emailDoesNotExist: "Er is geen gebruiker gevonden met dit e-mailadres",
+			},
+			toasts: {
+				emailSent: {
+					summary: "Wachtwoord vergeten",
+					detail: "Verander uw wachtwoord met de e-mail in uw inbox",
+				},
+			},
 			rememberPassword: "Wachtwoord herinnerd?",
 			signIn: "Log in",
 		},

@@ -12,7 +12,7 @@ const activeTab = ref("0");
 </script>
 
 <template>
-	<main>
+	<main class="container mx-auto">
 		<pv-tabs v-model:value="activeTab">
 			<pv-tab-list>
 				<pv-tab value="0">
@@ -26,7 +26,7 @@ const activeTab = ref("0");
 				</pv-tab>
 			</pv-tab-list>
 			<pv-tab-panels>
-				<pv-tab-panel value="0">
+				<pv-tab-panel value="0" class="p-5">
 					<SlideTransition>
 						<div v-show="activeTab === '0'">
 							<Suspense>
@@ -38,7 +38,7 @@ const activeTab = ref("0");
 						</div>
 					</SlideTransition>
 				</pv-tab-panel>
-				<pv-tab-panel value="1">
+				<pv-tab-panel value="1" class="p-5">
 					<SlideTransition>
 						<div v-show="activeTab === '1'">
 							<Suspense>
@@ -50,7 +50,7 @@ const activeTab = ref("0");
 						</div>
 					</SlideTransition>
 				</pv-tab-panel>
-				<pv-tab-panel value="2">
+				<pv-tab-panel value="2" class="p-5">
 					<SlideTransition>
 						<div v-show="activeTab === '2'">
 							<Suspense>

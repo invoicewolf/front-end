@@ -15,7 +15,7 @@ const validIban = computed(() => {
 </script>
 
 <template>
-	<BaseForm>
+	<BaseForm add-required-explanation>
 		<template #form>
 			<TextInput
 				id="iban"

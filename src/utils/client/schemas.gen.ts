@@ -135,7 +135,7 @@ export const $CompanyDto = {
             default: 'The Netherlands'
         }
     },
-    required: ['id', 'companyEmail', 'companyName', 'streetName', 'houseNumber', 'zipCode', 'city', 'country']
+    required: ['id', 'companyEmail', 'companyName', 'companyNumber', 'taxNumber', 'streetName', 'houseNumber', 'addition', 'zipCode', 'city', 'country']
 } as const;
 
 export const $ProfileDto = {
@@ -206,7 +206,7 @@ export const $CreateCompanyDto = {
             default: 'The Netherlands'
         }
     },
-    required: ['companyEmail', 'companyName', 'streetName', 'houseNumber', 'zipCode', 'city', 'country']
+    required: ['companyEmail', 'companyName', 'companyNumber', 'taxNumber', 'streetName', 'houseNumber', 'addition', 'zipCode', 'city', 'country']
 } as const;
 
 export const $UpdateCompanyDto = {
@@ -256,7 +256,7 @@ export const $UpdateCompanyDto = {
             default: 'The Netherlands'
         }
     },
-    required: ['companyEmail', 'companyName', 'streetName', 'houseNumber', 'zipCode', 'city', 'country']
+    required: ['companyEmail', 'companyName', 'companyNumber', 'taxNumber', 'streetName', 'houseNumber', 'addition', 'zipCode', 'city', 'country']
 } as const;
 
 export const $CompanyUserDto = {

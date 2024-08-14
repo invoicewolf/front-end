@@ -6,7 +6,7 @@ import type { AddresseeDetails } from "@/utils/AddresseeDetails";
 
 const addresseeDetails = defineModel<AddresseeDetails>({ required: true });
 
-function onAttentionChange(val: string) {
+function onAttentionChange(val: string | null) {
 	if (val && val.length > 0) {
 		addresseeDetails.value.attention = val;
 	}
@@ -15,7 +15,7 @@ function onAttentionChange(val: string) {
 	}
 }
 
-function onSubjectChange(val: string) {
+function onSubjectChange(val: string | null) {
 	if (val && val.length > 0) {
 		addresseeDetails.value.subject = val;
 	}

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { onMounted, ref } from "vue";
+import { getCurrentCompany } from "@/utils/client";
 import CompanyDetailsForm from "@/components/Forms/CompanyDetailsForm.vue";
 import { useInvoiceManager } from "@/composables/invoice-manager";
 import { useCompanyStore } from "@/stores/useCompanyStore";
@@ -24,9 +25,9 @@ async function fetchCompanyDetails() {
 	emit("fetched");
 }
 
-onMounted(() => {
-	if (localStorage.getItem("access_token")) {
-		fetchCompanyDetails();
+onMounted(async () => {
+	if (localStorage.getItem("access_token") && (await getCurrentCompany()).data) {
+		await fetchCompanyDetails();
 	}
 });
 </script>

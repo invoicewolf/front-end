@@ -25,7 +25,9 @@ const { company } = companyStore;
 async function updateCompanyDetails() {
 	updateButtonLoading.value = true;
 
-	await updateCurrentCompany({ body: company });
+	await updateCurrentCompany({
+		body: company,
+	});
 
 	toast.add({
 		severity: "success",

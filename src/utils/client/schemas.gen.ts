@@ -101,11 +101,13 @@ export const $CompanyDto = {
         },
         companyNumber: {
             type: 'string',
-            default: '93056589'
+            default: '93056589',
+            nullable: true
         },
         taxNumber: {
             type: 'string',
-            default: 'NL123456789B01'
+            default: 'NL123456789B01',
+            nullable: true
         },
         streetName: {
             type: 'string',
@@ -117,7 +119,8 @@ export const $CompanyDto = {
         },
         addition: {
             type: 'string',
-            default: 'E'
+            default: 'E',
+            nullable: true
         },
         zipCode: {
             type: 'string',
@@ -169,11 +172,13 @@ export const $CreateCompanyDto = {
         },
         companyNumber: {
             type: 'string',
-            default: '93056589'
+            default: '93056589',
+            nullable: true
         },
         taxNumber: {
             type: 'string',
-            default: 'NL123456789B01'
+            default: 'NL123456789B01',
+            nullable: true
         },
         streetName: {
             type: 'string',
@@ -185,7 +190,8 @@ export const $CreateCompanyDto = {
         },
         addition: {
             type: 'string',
-            default: 'E'
+            default: 'E',
+            nullable: true
         },
         zipCode: {
             type: 'string',
@@ -216,11 +222,13 @@ export const $UpdateCompanyDto = {
         },
         companyNumber: {
             type: 'string',
-            default: '93056589'
+            default: '93056589',
+            nullable: true
         },
         taxNumber: {
             type: 'string',
-            default: 'NL123456789B01'
+            default: 'NL123456789B01',
+            nullable: true
         },
         streetName: {
             type: 'string',
@@ -232,7 +240,8 @@ export const $UpdateCompanyDto = {
         },
         addition: {
             type: 'string',
-            default: 'E'
+            default: 'E',
+            nullable: true
         },
         zipCode: {
             type: 'string',

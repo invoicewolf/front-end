@@ -4,6 +4,8 @@ import CompanyDetailsForm from "@/components/Forms/CompanyDetailsForm.vue";
 import { useInvoiceManager } from "@/composables/invoice-manager";
 import { useCompanyStore } from "@/stores/useCompanyStore";
 
+const emit = defineEmits(["fetched"]);
+
 const invoiceManager = useInvoiceManager();
 
 const disableAllFields = ref(false);
@@ -18,6 +20,8 @@ async function fetchCompanyDetails() {
 	invoiceManager.invoice.companyDetails = companyStore.company;
 
 	disableAllFields.value = true;
+
+	emit("fetched");
 }
 
 onMounted(() => {

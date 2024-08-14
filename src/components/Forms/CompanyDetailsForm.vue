@@ -11,21 +11,21 @@ defineProps<{
 
 const companyDetails = defineModel<CompanyDetails>({ required: true });
 
-function onCompanyNumberChange(val: string | undefined) {
+function onCompanyNumberChange(val: string | null) {
 	if (val && val.length > 0) {
 		companyDetails.value.companyNumber = val;
 	}
 	else {
-		companyDetails.value.companyNumber = undefined;
+		companyDetails.value.companyNumber = null;
 	}
 }
 
-function onTaxNumberChange(val: string | undefined) {
+function onTaxNumberChange(val: string | null) {
 	if (val && val.length > 0) {
 		companyDetails.value.taxNumber = val;
 	}
 	else {
-		companyDetails.value.taxNumber = undefined;
+		companyDetails.value.taxNumber = null;
 	}
 }
 </script>

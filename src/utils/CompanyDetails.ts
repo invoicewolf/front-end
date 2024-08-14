@@ -4,15 +4,15 @@ import { validateEmail } from "@/utils/helpers/validate-email";
 export interface ICompanyDetails extends IAddressDetails {
 	companyEmail: string;
 	companyName: string;
-	companyNumber?: string;
-	taxNumber?: string;
+	companyNumber: string | null;
+	taxNumber: string | null;
 }
 
 export class CompanyDetails extends AddressDetails implements ICompanyDetails {
 	companyEmail: string = "";
 	companyName: string = "";
-	companyNumber?: string = undefined;
-	taxNumber?: string = undefined;
+	companyNumber: string | null = null;
+	taxNumber: string | null = null;
 
 	constructor(companyDetails?: ICompanyDetails) {
 		super(companyDetails);
@@ -32,8 +32,8 @@ export class CompanyDetails extends AddressDetails implements ICompanyDetails {
 	reset() {
 		this.companyEmail = "";
 		this.companyName = "";
-		this.companyNumber = undefined;
-		this.taxNumber = undefined;
+		this.companyNumber = null;
+		this.taxNumber = null;
 		super.reset();
 	}
 

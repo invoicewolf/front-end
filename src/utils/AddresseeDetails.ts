@@ -2,14 +2,14 @@ import { AddressDetails, type IAddressDetails } from "@/utils/AddressDetails";
 
 interface IAddresseeDetails extends IAddressDetails {
 	companyName: string;
-	attention?: string;
-	subject?: string;
+	attention: string | null;
+	subject: string | null;
 }
 
 export class AddresseeDetails extends AddressDetails implements IAddresseeDetails {
 	companyName: string = "";
-	attention?: string = undefined;
-	subject?: string = undefined;
+	attention: string | null = null;
+	subject: string | null = null;
 
 	constructor(addresseeDetails?: IAddresseeDetails) {
 		super(addresseeDetails);
@@ -26,8 +26,8 @@ export class AddresseeDetails extends AddressDetails implements IAddresseeDetail
 
 	reset() {
 		this.companyName = "";
-		this.attention = undefined;
-		this.subject = undefined;
+		this.attention = null;
+		this.subject = null;
 		super.reset();
 	}
 }

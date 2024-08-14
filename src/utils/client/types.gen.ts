@@ -30,11 +30,11 @@ export type CompanyDto = {
     id: number;
     companyEmail: string;
     companyName: string;
-    companyNumber?: string;
-    taxNumber?: string;
+    companyNumber: string | null;
+    taxNumber: string | null;
     streetName: string;
     houseNumber: string;
-    addition?: string;
+    addition: string | null;
     zipCode: string;
     city: string;
     country: string;
@@ -48,11 +48,11 @@ export type ProfileDto = {
 export type CreateCompanyDto = {
     companyEmail: string;
     companyName: string;
-    companyNumber?: string;
-    taxNumber?: string;
+    companyNumber: string | null;
+    taxNumber: string | null;
     streetName: string;
     houseNumber: string;
-    addition?: string;
+    addition: string | null;
     zipCode: string;
     city: string;
     country: string;
@@ -61,11 +61,11 @@ export type CreateCompanyDto = {
 export type UpdateCompanyDto = {
     companyEmail: string;
     companyName: string;
-    companyNumber?: string;
-    taxNumber?: string;
+    companyNumber: string | null;
+    taxNumber: string | null;
     streetName: string;
     houseNumber: string;
-    addition?: string;
+    addition: string | null;
     zipCode: string;
     city: string;
     country: string;

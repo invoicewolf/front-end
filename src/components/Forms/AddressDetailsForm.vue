@@ -69,12 +69,12 @@ onMounted(() => {
 	}
 });
 
-function onAdditionChange(val: string | undefined) {
+function onAdditionChange(val: string | null) {
 	if (val && val.length > 0) {
 		addressDetails.value.addition = val;
 	}
 	else {
-		addressDetails.value.addition = undefined;
+		addressDetails.value.addition = null;
 	}
 }
 </script>

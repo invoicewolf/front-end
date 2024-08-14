@@ -23,7 +23,7 @@ defineEmits<{
 	(e: "blur"): void;
 }>();
 
-const model = defineModel<string | undefined>({ required: true });
+const model = defineModel<string | null>({ required: true });
 </script>
 
 <template>

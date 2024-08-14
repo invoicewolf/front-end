@@ -1,7 +1,7 @@
 export interface IAddressDetails {
 	streetName: string;
 	houseNumber: string;
-	addition?: string;
+	addition: string | null;
 	zipCode: string;
 	city: string;
 	country: string;
@@ -10,7 +10,7 @@ export interface IAddressDetails {
 export class AddressDetails implements IAddressDetails {
 	streetName: string = "";
 	houseNumber: string = "";
-	addition?: string;
+	addition: string | null = null;
 	zipCode: string = "";
 	city: string = "";
 	country: string = "";
@@ -29,7 +29,7 @@ export class AddressDetails implements IAddressDetails {
 	reset() {
 		this.streetName = "";
 		this.houseNumber = "";
-		this.addition = undefined;
+		this.addition = null;
 		this.zipCode = "";
 		this.city = "";
 		this.country = "";

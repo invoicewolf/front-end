@@ -6,21 +6,21 @@ import type { AddresseeDetails } from "@/utils/AddresseeDetails";
 
 const addresseeDetails = defineModel<AddresseeDetails>({ required: true });
 
-function onAttentionChange(val: string | undefined) {
+function onAttentionChange(val: string | null) {
 	if (val && val.length > 0) {
 		addresseeDetails.value.attention = val;
 	}
 	else {
-		addresseeDetails.value.attention = undefined;
+		addresseeDetails.value.attention = null;
 	}
 }
 
-function onSubjectChange(val: string | undefined) {
+function onSubjectChange(val: string | null) {
 	if (val && val.length > 0) {
 		addresseeDetails.value.subject = val;
 	}
 	else {
-		addresseeDetails.value.subject = undefined;
+		addresseeDetails.value.subject = null;
 	}
 }
 </script>

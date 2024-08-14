@@ -225,7 +225,7 @@ export const nlNL = {
 			},
 		},
 		dontWantToUseAccount: "Wilt u geen account gebruiken?",
-		useFreeVersion: "Gebruik de gratis versie",
+		useFreeVersion: "Gebruik de WolfCub versie",
 		agreeBySignIn: "Met het inloggen gaat u akkoord met onze",
 		privacyPolicy: "privacyvoorwaarden",
 		toasts: {

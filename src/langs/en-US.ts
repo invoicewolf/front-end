@@ -225,7 +225,7 @@ export const enUS = {
 			},
 		},
 		dontWantToUseAccount: "Don't want to use an account?",
-		useFreeVersion: "Use the free version",
+		useFreeVersion: "Use the WolfCub version",
 		agreeBySignIn: "By signing in you agree to our",
 		privacyPolicy: "privacy policy",
 		toasts: {

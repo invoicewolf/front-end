@@ -8,6 +8,9 @@ import LanguageSelector from "@/components/LanguageSelector.vue";
 	<nav>
 		<pv-menubar
 			:pt="{
+				root: {
+					class: 'rounded-t-none rounded-b-md',
+				},
 				item: {
 					class: 'z-10',
 				},

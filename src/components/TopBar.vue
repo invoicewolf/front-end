@@ -92,6 +92,9 @@ function signOut() {
 			class=""
 			:model="menubarItems"
 			:pt="{
+				root: {
+					class: 'rounded-t-none rounded-b-md',
+				},
 				item: {
 					class: 'z-10',
 				},

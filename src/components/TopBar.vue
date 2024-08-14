@@ -93,7 +93,7 @@ function signOut() {
 			:model="menubarItems"
 			:pt="{
 				root: {
-					class: 'rounded-t-none rounded-b-md',
+					class: 'rounded-none border-t-0 border-r-0 border-l-0',
 				},
 				item: {
 					class: 'z-10',

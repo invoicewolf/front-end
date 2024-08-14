@@ -140,7 +140,7 @@ watch(activeStep, () => {
 								:disable-next-button="enableStep1NextButton"
 								@next="activateCallback('2')"
 							>
-								<CompanyDetailsPanel />
+								<CompanyDetailsPanel @fetched="activeStep = '2'" />
 							</BasePanel>
 						</div>
 					</SlideTransition>

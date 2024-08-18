@@ -1,8 +1,8 @@
-import { PDFDocument, rgb } from "pdf-lib";
-import * as IBAN from "iban-ts";
 import fontkit from "@pdf-lib/fontkit";
-import { formatCurrencySymbol } from "@/utils/helpers/format-currency-symbol";
+import * as IBAN from "iban-ts";
+import { PDFDocument, rgb } from "pdf-lib";
 import { i18n } from "@/main";
+import { formatCurrencySymbol } from "@/utils/helpers/format-currency-symbol";
 import { formatDate } from "@/utils/helpers/format-date";
 import { wrapText } from "@/utils/helpers/wrap-text";
 import { type IInvoice, Invoice } from "@/utils/Invoice";
@@ -27,10 +27,10 @@ export class InvoiceManager {
 	}
 
 	async createPdf() {
-		const regularUrl = "http://localhost:3000/fonts/regular";
+		const regularUrl = `${import.meta.env.VITE_API_URL}/fonts/regular`;
 		const regularFontBytes = await fetch(regularUrl).then(res => res.arrayBuffer());
 
-		const boldUrl = "http://localhost:3000/fonts/bold";
+		const boldUrl = `${import.meta.env.VITE_API_URL}/fonts/bold`;
 		const boldFontBytes = await fetch(boldUrl).then(res => res.arrayBuffer());
 
 		const pdfDoc = await PDFDocument.create();

@@ -248,9 +248,9 @@ async function forgotPassword() {
 
 								<p class="text-sm">
 									{{ $t("login.agreeBySignIn") }}
-									<router-link to="/privacy-policy" class="text-sm text-primary-500 hover:underline">
+									<a href="https://invoicewolf.net/privacy-policy" class="text-sm text-primary-500 hover:underline">
 										{{ $t("login.privacyPolicy") }}
-									</router-link>
+									</a>
 								</p>
 							</div>
 						</form>
@@ -322,9 +322,9 @@ async function forgotPassword() {
 
 								<p class="text-sm">
 									{{ $t("login.agreeBySignIn") }}
-									<router-link to="/privacy-policy" class="text-sm text-primary-500 hover:underline">
+									<a href="https://invoicewolf.net/privacy-policy" class="text-sm text-primary-500 hover:underline">
 										{{ $t("login.privacyPolicy") }}
-									</router-link>
+									</a>
 								</p>
 							</form>
 						</div>

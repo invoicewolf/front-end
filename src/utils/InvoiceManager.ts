@@ -244,17 +244,17 @@ export class InvoiceManager {
 
 			page.drawText(currency, {
 				x: paddedHeaderRight - (boldText.font.widthOfTextAtSize(total.total, boldText.size) + 2) - boldText.font.widthOfTextAtSize(currency, boldText.size),
-				y: height - line * normalText.height,
+				y: rowHeight,
 				...normalText,
 			});
 
 			page.drawText(product.cost.replace(currency, ""), {
 				x: paddedHeaderRight - normalText.font.widthOfTextAtSize(product.cost.replace(currency, ""), normalText.size),
-				y: height - line * normalText.height,
+				y: rowHeight,
 				...normalText,
 			});
 
-			line = lineHeight + 1.2;
+			line = lineHeight + 1.3;
 		});
 
 		const totalRowLeft = 350;

@@ -55,13 +55,6 @@ export const router = createRouter({
 			name: "403",
 			component: () => import("@/views/UnauthorizedView.vue"),
 		},
-		{
-			path: "/privacy-policy",
-			name: "Privacy policy",
-			components: {
-				default: () => import("@/views/PrivacyPolicyView.vue"),
-			},
-		},
 	],
 });
 

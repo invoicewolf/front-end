@@ -67,7 +67,7 @@ function getCookie() {
 
 	const parts = value.split("; " + "theme" + "=");
 
-	if (parts.length == 2) {
+	if (parts.length === 2) {
 		return parts.pop()!.split(";").shift();
 	}
 }

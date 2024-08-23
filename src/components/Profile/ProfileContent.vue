@@ -175,7 +175,7 @@ async function updateFirebasePassword(currentUser: UserDto) {
 
 <template>
 	<div>
-		<pv-card class="w-[50rem]">
+		<pv-card class="w-full sm:w-[50rem]">
 			<template #title>
 				<span class="font-semibold">
 					{{ $t("profile.profile") }}
@@ -191,7 +191,7 @@ async function updateFirebasePassword(currentUser: UserDto) {
 				</div>
 			</template>
 			<template #content>
-				<div class="mb-6 flex flex-row gap-4">
+				<div class="mb-6 flex flex-col gap-4 sm:flex-row">
 					<div class="flex w-full flex-col gap-6">
 						<div class="grid grid-cols-2 gap-4">
 							<TextInput id="firstName" v-model="profile.user.firstName" :label="$t('profile.labels.firstName')" />
@@ -225,7 +225,8 @@ async function updateFirebasePassword(currentUser: UserDto) {
 						</div>
 					</div>
 
-					<pv-divider layout="vertical" />
+					<pv-divider layout="vertical" class="hidden sm:block" />
+					<pv-divider layout="horizontal" class="block sm:hidden" />
 
 					<div class="flex w-full flex-col gap-6">
 						<TextInput id="email" v-model="profile.user.email" :label="$t('profile.labels.email')" />
@@ -252,7 +253,7 @@ async function updateFirebasePassword(currentUser: UserDto) {
 				</div>
 			</template>
 			<template #footer>
-				<div class="flex flex-row justify-between gap-16">
+				<div class="flex flex-col justify-between gap-4 sm:flex-row sm:gap-16">
 					<pv-button
 						:label="$t('profile.buttons.deleteAccount')"
 						severity="danger"

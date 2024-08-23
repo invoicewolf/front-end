@@ -12,7 +12,7 @@ const activeTab = ref("0");
 </script>
 
 <template>
-	<main class="container mx-auto p-10">
+	<main class="mx-auto w-full sm:container sm:p-10">
 		<pv-tabs v-model:value="activeTab">
 			<pv-tab-list>
 				<pv-tab value="0">

@@ -17,9 +17,9 @@ const { profile } = profileStore;
 
 <template>
 	<div class="flex size-full justify-center">
-		<pv-card class="p-20">
+		<pv-card class="sm:p-20">
 			<template #content>
-				<div class="flex flex-col items-center justify-center gap-4 text-center">
+				<div class="flex flex-col gap-4 text-center">
 					<InvoiceWolfNameLogo arrangement="vertical" size="large" />
 
 					<pv-divider />

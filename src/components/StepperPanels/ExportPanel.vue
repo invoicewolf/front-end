@@ -12,8 +12,10 @@ const { pdf } = usePDF({
 </script>
 
 <template>
-	<div class="grid grid-cols-2">
-		<VuePDF :pdf="pdf" class="drop-shadow" />
+	<div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+		<div class="w-full">
+			<VuePDF fit-parent :pdf="pdf" class="drop-shadow" />
+		</div>
 		<div class="flex w-56 flex-col gap-4">
 			<h1 class="text select-none text-4xl font-medium">
 				{{ $t("export.save") }}

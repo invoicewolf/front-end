@@ -2,6 +2,7 @@
 import { useFileSystemAccess } from "@vueuse/core";
 import { computed, ref, watch } from "vue";
 import { useI18n } from "vue-i18n";
+import { debounce } from "@/utils/helpers/debounce";
 import SlideTransition from "@/components/Transitions/SlideTransition.vue";
 import AddresseeDetailsPanel from "@/components/StepperPanels/AddresseeDetailsPanel.vue";
 import BasePanel from "@/components/StepperPanels/BasePanel.vue";
@@ -97,13 +98,15 @@ const activeStep = ref("1");
 
 const pdfComponentKey = ref(0);
 
-async function refreshPdf() {
+function refreshPdf() {
 	pdfComponentKey.value++;
 }
 
 watch(i18n.locale, () => {
 	refreshPdf();
 });
+
+window.addEventListener("resize", debounce(() => refreshPdf(), 100));
 
 watch(activeStep, () => {
 	refreshPdf();

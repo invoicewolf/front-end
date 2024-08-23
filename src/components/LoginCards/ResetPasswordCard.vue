@@ -3,6 +3,7 @@ import { getAuth, sendPasswordResetEmail } from "firebase/auth";
 import { useToast } from "primevue/usetoast";
 import { ref } from "vue";
 import { useI18n } from "vue-i18n";
+import BaseCard from "@/components/LoginCards/BaseCard.vue";
 import TextInput from "@/components/TextInput.vue";
 import { getUserExistsByEmail } from "@/utils/client";
 import { sleep } from "@/utils/helpers/sleep";
@@ -52,53 +53,41 @@ async function forgotPassword() {
 </script>
 
 <template>
-	<div class="flex h-full flex-col justify-between gap-4 bg-surface-0 p-10 dark:bg-surface-950">
-		<div class="flex flex-col gap-24">
-			<div class="flex flex-col gap-4">
-				<h1 class="text-4xl font-semibold">
-					{{ $t("login.forgotPassword.resetPassword") }}
-				</h1>
-				<p class="text-sm">
-					{{ $t("login.forgotPassword.rememberPassword") }}
-					<a class="text-sm text-primary-500 hover:underline" @click="$emit('step', 'signIn')">
-						{{ $t("login.signUp.signIn") }}</a>
-				</p>
-			</div>
-
-			<div class="flex flex-col gap-4">
-				<TextInput id="email" v-model="model.email" :label="$t('login.forgotPassword.labels.email')" />
-
-				<pv-button
-					v-if="!passwordEmailSent"
-					class="w-full"
-					:label="$t('login.forgotPassword.buttons.resetPassword')"
-					:disabled="disableForgotPasswordButton"
-					:loading="disableForgotPasswordButton"
-					@click="forgotPassword"
-				/>
-
-				<pv-button
-					v-else
-					class="w-full"
-					:label="$t('login.forgotPassword.buttons.backToSignIn')"
-					@click="$emit('step', 'signIn'); passwordEmailSent = false; disableForgotPasswordButton = false;"
-				/>
-
-				<pv-message v-if="userNotFound" icon="pi pi-times-circle" severity="error">
-					{{ $t("login.forgotPassword.messages.emailDoesNotExist") }}
-				</pv-message>
-			</div>
-		</div>
-
-		<div class="flex flex-col gap-4">
+	<BaseCard>
+		<template #title>
+			{{ $t("login.forgotPassword.resetPassword") }}
+		</template>
+		<template #subtitle>
 			<p class="text-sm">
-				{{ $t("login.agreeBySignIn") }}
-				<a href="https://invoicewolf.net/privacy-policy" class="text-sm text-primary-500 hover:underline">
-					{{ $t("login.privacyPolicy") }}
-				</a>
+				{{ $t("login.forgotPassword.rememberPassword") }}
+				<a class="text-sm text-primary-500 hover:underline" @click="$emit('step', 'signIn')">
+					{{ $t("login.signUp.signIn") }}</a>
 			</p>
-		</div>
-	</div>
+		</template>
+		<template #content>
+			<TextInput id="email" v-model="model.email" :label="$t('login.forgotPassword.labels.email')" />
+
+			<pv-button
+				v-if="!passwordEmailSent"
+				class="w-full"
+				:label="$t('login.forgotPassword.buttons.resetPassword')"
+				:disabled="disableForgotPasswordButton"
+				:loading="disableForgotPasswordButton"
+				@click="forgotPassword"
+			/>
+
+			<pv-button
+				v-else
+				class="w-full"
+				:label="$t('login.forgotPassword.buttons.backToSignIn')"
+				@click="$emit('step', 'signIn'); passwordEmailSent = false; disableForgotPasswordButton = false;"
+			/>
+
+			<pv-message v-if="userNotFound" icon="pi pi-times-circle" severity="error">
+				{{ $t("login.forgotPassword.messages.emailDoesNotExist") }}
+			</pv-message>
+		</template>
+	</BaseCard>
 </template>
 
 <style scoped>

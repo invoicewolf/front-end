@@ -1,7 +1,12 @@
 <script setup lang="ts">
 import { useToast } from "primevue/usetoast";
+import { reactive } from "vue";
 import { useI18n } from "vue-i18n";
-import NewPaymentDetails from "@/components/NewPaymentDetails.vue";
+import AdminPaymentDetailsForm from "@/components/Forms/AdminPaymentDetailsForm.vue";
+import BaseCard from "@/components/LoginCards/BaseCard.vue";
+import { BasePaymentDetails } from "@/utils/BasePaymentDetails";
+import { createCurrentCompanyPaymentDetails } from "@/utils/client";
+import { refreshToken } from "@/utils/helpers/refreshToken";
 import { sleep } from "@/utils/helpers/sleep";
 import { userSignIn } from "@/utils/login-flow/user-sign-in";
 
@@ -35,35 +40,42 @@ async function signInAfterCreation() {
 		group: "br",
 	});
 }
+
+const paymentDetails = reactive(new BasePaymentDetails());
+
+async function postCompanyDetails() {
+	await refreshToken();
+
+	const res = await createCurrentCompanyPaymentDetails({ body: paymentDetails });
+
+	if (res.data) {
+		await signInAfterCreation();
+	}
+}
 </script>
 
 <template>
-	<div class="flex h-full flex-col justify-between gap-4 bg-surface-0 p-10 dark:bg-surface-950">
-		<div class="flex flex-col gap-24">
-			<div class="flex flex-col gap-4">
-				<h1 class="text-4xl font-semibold">
-					{{ $t('login.paymentDetails.fillInDetails') }}
-				</h1>
-			</div>
-
-			<NewPaymentDetails @success="signInAfterCreation" />
-		</div>
-
-		<div class="flex flex-row items-center justify-between">
-			<p class="text-sm">
-				{{ $t("login.agreeBySignIn") }}
-				<a href="https://invoicewolf.net/privacy-policy" class="text-sm text-primary-500 hover:underline">
-					{{ $t("login.privacyPolicy") }}
-				</a>
-			</p>
+	<BaseCard>
+		<template #title>
+			{{ $t('login.paymentDetails.fillInDetails') }}
+		</template>
+		<template #content>
+			<AdminPaymentDetailsForm v-model="paymentDetails" />
+			<pv-button
+				:label="$t('login.paymentDetails.buttons.createCompany')"
+				icon="pi pi-briefcase"
+				@click="postCompanyDetails"
+			/>
+		</template>
+		<template #previousButton>
 			<pv-button
 				:label="$t('general.stepper.previous')"
 				text
 				icon="pi pi-arrow-left"
 				@click="$emit('step', 'companyDetails')"
 			/>
-		</div>
-	</div>
+		</template>
+	</BaseCard>
 </template>
 
 <style scoped>

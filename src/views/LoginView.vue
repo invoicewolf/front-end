@@ -37,8 +37,8 @@ watch(step, () => (incorrect.value = false));
 <template>
 	<main class="flex flex-1 select-none justify-center overflow-x-hidden bg-gradient-to-t from-primary-100 to-surface-0 dark:from-primary-950 dark:to-surface-950">
 		<div v-if="step !== 'loading'" class="w-full backdrop-blur-lg">
-			<div class="flex size-full flex-row">
-				<div class="relative size-full overflow-hidden bg-surface-0 opacity-40 dark:bg-surface-950">
+			<div class="flex size-full sm:flex-row">
+				<div class="relative hidden size-full overflow-hidden bg-surface-0 opacity-40 dark:bg-surface-950 sm:block">
 					<WolfIcon class="absolute fill-primary-100 dark:fill-primary-950" />
 				</div>
 				<div class="w-full max-w-xl bg-surface-0 dark:bg-surface-950">

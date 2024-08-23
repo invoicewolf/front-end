@@ -70,6 +70,10 @@ async function refreshMenuBar() {
 			route: "/admin",
 		});
 	}
+
+	menubarItems.value.push({
+		component: "languageSelector",
+	});
 }
 
 watch(i18n.locale, () => {
@@ -89,7 +93,7 @@ function signOut() {
 <template>
 	<nav>
 		<pv-menubar
-			class="h-20 rounded-none border-x-0 border-t-0 p-6"
+			class="group h-20 rounded-none border-x-0 border-t-0 p-6"
 			:model="menubarItems"
 			:pt="{
 				item: {
@@ -99,7 +103,8 @@ function signOut() {
 		>
 			<template #start>
 				<router-link to="/">
-					<InvoiceWolfNameLogo arrangement="horizontal" size="normal" :free="!userLoggedIn" />
+					<InvoiceWolfNameLogo class="block group-[.p-menubar-mobile]:hidden" arrangement="horizontal" size="normal" :free="!userLoggedIn" />
+					<InvoiceWolfNameLogo no-text class="hidden group-[.p-menubar-mobile]:block" arrangement="horizontal" size="normal" :free="!userLoggedIn" />
 				</router-link>
 			</template>
 			<template #item="{ item, props, hasSubmenu }">
@@ -109,15 +114,25 @@ function signOut() {
 					</a>
 				</router-link>
 				<a
-					v-else v-ripple :href="item.url" :target="item.target" v-bind="props.action" class="font-medium"
+					v-else-if="!item.component" v-ripple :href="item.url" :target="item.target" v-bind="props.action" class="font-medium"
 				>
 					<span>{{ item.label }}</span>
 					<span v-if="hasSubmenu" class="pi pi-fw pi-angle-down" />
 				</a>
+
+				<span
+					v-if="item.component === 'languageSelector'"
+					class="hidden w-full px-2 py-1 group-[.p-menubar-mobile]:block"
+					@click="(e) => e.stopPropagation()"
+				>
+					<LanguageSelector class="w-full" />
+				</span>
 			</template>
 			<template #end>
-				<span class="flex flex-row items-center gap-6">
-					<LanguageSelector />
+				<span class="flex flex-row items-center gap-4">
+					<span class="block group-[.p-menubar-mobile]:hidden">
+						<LanguageSelector />
+					</span>
 					<DarkModeSelector />
 					<pv-button v-if="userLoggedIn" label="Sign out" link @click="signOut" />
 					<router-link v-else to="/login">

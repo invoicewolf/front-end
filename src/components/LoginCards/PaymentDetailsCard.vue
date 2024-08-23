@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { useToast } from "primevue/usetoast";
 import { useI18n } from "vue-i18n";
-import BaseCard from "@/components/LoginCards/BaseCard.vue";
 import NewPaymentDetails from "@/components/NewPaymentDetails.vue";
 import { sleep } from "@/utils/helpers/sleep";
 import { userSignIn } from "@/utils/login-flow/user-sign-in";
@@ -39,14 +38,32 @@ async function signInAfterCreation() {
 </script>
 
 <template>
-	<BaseCard>
-		<template #title>
-			{{ $t('login.paymentDetails.fillInDetails') }}
-		</template>
-		<template #content>
+	<div class="flex h-full flex-col justify-between gap-4 bg-surface-0 p-10 dark:bg-surface-950">
+		<div class="flex flex-col gap-24">
+			<div class="flex flex-col gap-4">
+				<h1 class="text-4xl font-semibold">
+					{{ $t('login.paymentDetails.fillInDetails') }}
+				</h1>
+			</div>
+
 			<NewPaymentDetails @success="signInAfterCreation" />
-		</template>
-	</BaseCard>
+		</div>
+
+		<div class="flex flex-row items-center justify-between">
+			<p class="text-sm">
+				{{ $t("login.agreeBySignIn") }}
+				<a href="https://invoicewolf.net/privacy-policy" class="text-sm text-primary-500 hover:underline">
+					{{ $t("login.privacyPolicy") }}
+				</a>
+			</p>
+			<pv-button
+				:label="$t('general.stepper.previous')"
+				text
+				icon="pi pi-arrow-left"
+				@click="$emit('step', 'companyDetails')"
+			/>
+		</div>
+	</div>
 </template>
 
 <style scoped>

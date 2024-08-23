@@ -11,16 +11,18 @@
 <style scoped>
 .v-enter-active,
 .v-leave-active {
-    transition: all 0.075s ease-out;
+    transition: all 0.1s ease-out;
 }
 
 .v-enter-from {
     transform: translateY(30px);
+    opacity: 0;
     overflow: hidden;
 }
 
 .v-leave-to {
     transform: translateY(-30px);
+    opacity: 0;
     overflow: hidden;
 }
 </style>

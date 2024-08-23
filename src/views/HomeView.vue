@@ -3,7 +3,7 @@ import Welcome from "@/components/Welcome.vue";
 </script>
 
 <template>
-	<main class="flex size-full flex-col items-center justify-center gap-4 px-72">
+	<main class="flex size-full flex-col items-center justify-center gap-4 p-10 px-72">
 		<Suspense>
 			<template #fallback>
 				<div class="flex size-full items-center justify-center">

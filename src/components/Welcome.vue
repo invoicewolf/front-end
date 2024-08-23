@@ -16,7 +16,7 @@ const { profile } = profileStore;
 </script>
 
 <template>
-	<main class="flex size-full justify-center">
+	<div class="flex size-full justify-center">
 		<pv-card class="p-20">
 			<template #content>
 				<div class="flex flex-col items-center justify-center gap-4 text-center">
@@ -33,5 +33,5 @@ const { profile } = profileStore;
 				</div>
 			</template>
 		</pv-card>
-	</main>
+	</div>
 </template>

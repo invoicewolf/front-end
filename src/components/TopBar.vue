@@ -89,12 +89,9 @@ function signOut() {
 <template>
 	<nav>
 		<pv-menubar
-			class=""
+			class="h-20 rounded-none border-x-0 border-t-0 p-6"
 			:model="menubarItems"
 			:pt="{
-				root: {
-					class: 'rounded-none border-t-0 border-r-0 border-l-0',
-				},
 				item: {
 					class: 'z-10',
 				},
@@ -119,9 +116,9 @@ function signOut() {
 				</a>
 			</template>
 			<template #end>
-				<span class="flex flex-row items-center gap-4">
-					<DarkModeSelector />
+				<span class="flex flex-row items-center gap-6">
 					<LanguageSelector />
+					<DarkModeSelector />
 					<pv-button v-if="userLoggedIn" label="Sign out" link @click="signOut" />
 					<router-link v-else to="/login">
 						<pv-button label="Sign in" link />

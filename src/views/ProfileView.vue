@@ -4,7 +4,7 @@ import ProfileSkeletons from "@/components/Profile/ProfileSkeleton.vue";
 </script>
 
 <template>
-	<main class="flex size-full flex-col items-center justify-center">
+	<main class="flex size-full flex-col items-center justify-center p-10">
 		<Suspense>
 			<template #fallback>
 				<ProfileSkeletons />

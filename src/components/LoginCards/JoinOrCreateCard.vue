@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { useRoute } from "vue-router";
-import BaseCard from "@/components/LoginCards/BaseCard.vue";
 import { userSignIn } from "@/utils/login-flow/user-sign-in";
 
 defineEmits<{ (e: "step", step: "signIn" | "signUp" | "joinOrCreate" | "companyDetails" | "paymentDetails" | "forgotPassword" | "loading"): void }>();
@@ -27,25 +26,35 @@ async function signIn() {
 </script>
 
 <template>
-	<BaseCard>
-		<template #title>
-			{{ $t("login.pick.makeAChoice") }}
-		</template>
-		<template #content>
-			<div class="space-y-4 md:space-y-6">
-				<div class="flex flex-col gap-4">
-					<pv-button
-						:label="$t('login.pick.buttons.haveCompany')" icon="pi pi-briefcase"
-						@click="$emit('step', 'companyDetails')"
-					/>
-					<pv-button
-						:label="$t('login.pick.buttons.workForCompany')" icon="pi pi-users"
-						@click="signIn"
-					/>
-				</div>
+	<div class="flex h-full flex-col justify-between gap-4 bg-surface-0 p-10 dark:bg-surface-950">
+		<div class="flex flex-col gap-24">
+			<div class="flex flex-col gap-4">
+				<h1 class="text-4xl font-semibold">
+					{{ $t("login.pick.makeAChoice") }}
+				</h1>
 			</div>
-		</template>
-	</BaseCard>
+
+			<div class="flex flex-col gap-4">
+				<pv-button
+					:label="$t('login.pick.buttons.haveCompany')" icon="pi pi-briefcase"
+					@click="$emit('step', 'companyDetails')"
+				/>
+				<pv-button
+					:label="$t('login.pick.buttons.workForCompany')" icon="pi pi-users"
+					@click="signIn"
+				/>
+			</div>
+		</div>
+
+		<div class="flex flex-col gap-4">
+			<p class="text-sm">
+				{{ $t("login.agreeBySignIn") }}
+				<a href="https://invoicewolf.net/privacy-policy" class="text-sm text-primary-500 hover:underline">
+					{{ $t("login.privacyPolicy") }}
+				</a>
+			</p>
+		</div>
+	</div>
 </template>
 
 <style scoped>

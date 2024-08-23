@@ -1,13 +1,12 @@
 <script setup lang="ts">
-import { darkmode, toggleMode } from "@/stores/darkModeStore";
+import { darkmode, setDark, setLight } from "@/stores/darkModeStore";
 </script>
 
 <template>
-	<div class="flex flex-row items-center gap-2">
-		<i class="pi pi-sun" />
-		<pv-toggle-switch v-model="darkmode" binary @change="toggleMode()" />
-		<i class="pi pi-moon" />
-	</div>
+	<span class="cursor-pointer text-primary-500 duration-300 hover:text-primary-400">
+		<i v-if="!darkmode" class="pi pi-moon" style="font-size: 1.25rem; line-height: 1.75rem" @click="setDark" />
+		<i v-else class="pi pi-sun" style="font-size: 1.25rem; line-height: 1.75rem" @click="setLight" />
+	</span>
 </template>
 
 <style scoped>

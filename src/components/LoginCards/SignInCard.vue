@@ -58,7 +58,9 @@ async function signIn() {
 					id="password"
 					v-model="model.password"
 					:disabled="signingIn"
-					:label="$t('login.login.labels.password')" password input-class="w-full"
+					:label="$t('login.login.labels.password')"
+					password
+					input-class="w-full"
 				/>
 
 				<pv-message v-if="incorrect" icon="pi pi-times-circle" severity="error">

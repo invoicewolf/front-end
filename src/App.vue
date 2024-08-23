@@ -13,7 +13,7 @@ onBeforeMount(() => {
 <template>
 	<div class="flex min-h-screen flex-col bg-surface-50 dark:bg-surface-950">
 		<RouterView name="topBar" />
-		<RouterView v-slot="{ Component }" class="size-full flex-1 p-10">
+		<RouterView v-slot="{ Component }" class="size-full flex-1">
 			<RouterTransition>
 				<component :is="Component" />
 			</RouterTransition>

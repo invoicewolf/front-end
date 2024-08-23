@@ -5,27 +5,14 @@ import LanguageSelector from "@/components/LanguageSelector.vue";
 </script>
 
 <template>
-	<nav>
-		<pv-menubar
-			:pt="{
-				root: {
-					class: 'rounded-none border-t-0 border-r-0 border-l-0',
-				},
-				item: {
-					class: 'z-10',
-				},
-			}"
-		>
-			<template #start>
-				<InvoiceWolfNameLogo arrangement="horizontal" size="normal" />
-			</template>
-			<template #end>
-				<span class="flex flex-row items-center gap-4">
-					<DarkModeSelector />
-					<LanguageSelector />
-				</span>
-			</template>
-		</pv-menubar>
+	<nav class="flex h-20 w-full justify-between bg-surface-0 p-6 dark:bg-surface-950">
+		<router-link to="/">
+			<InvoiceWolfNameLogo arrangement="horizontal" size="normal" />
+		</router-link>
+		<div class="flex flex-row items-center gap-6">
+			<LanguageSelector />
+			<DarkModeSelector />
+		</div>
 	</nav>
 </template>
 

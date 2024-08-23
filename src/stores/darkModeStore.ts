@@ -44,7 +44,7 @@ export function toggleMode() {
 	}
 }
 
-function setDark() {
+export function setDark() {
 	root.classList.add("dark");
 
 	setCookie("dark");
@@ -53,7 +53,7 @@ function setDark() {
 	darkmode.value = true;
 }
 
-function setLight() {
+export function setLight() {
 	root.classList.remove("dark");
 
 	setCookie("light");

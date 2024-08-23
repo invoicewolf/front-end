@@ -2,7 +2,6 @@
 import { ref } from "vue";
 import { userSignUp } from "@/utils/login-flow/user-sign-up";
 import { validateEmail } from "@/utils/helpers/validate-email";
-import BaseCard from "@/components/LoginCards/BaseCard.vue";
 import TextInput from "@/components/TextInput.vue";
 import { debounce } from "@/utils/helpers/debounce";
 
@@ -40,12 +39,20 @@ async function signUp() {
 </script>
 
 <template>
-	<BaseCard>
-		<template #title>
-			{{ $t("login.signUp.createNewAccount") }}
-		</template>
-		<template #content>
-			<form class="space-y-4 md:space-y-6">
+	<div class="flex h-full flex-col justify-between gap-4 bg-surface-0 p-10 dark:bg-surface-950">
+		<div class="flex flex-col gap-24">
+			<div class="flex flex-col gap-4">
+				<h1 class="text-4xl font-semibold">
+					{{ $t("login.signUp.createNewAccount") }}
+				</h1>
+				<p class="text-sm">
+					{{ $t("login.signUp.alreadyHaveAnAccount") }}
+					<a class="text-sm text-primary-500 hover:underline" @click="$emit('step', 'signIn')">
+						{{ $t("login.signUp.signIn") }}</a>
+				</p>
+			</div>
+
+			<div class="flex flex-col gap-4">
 				<div class="grid grid-cols-2 gap-4">
 					<TextInput id="firstName" v-model="model.firstName" :label="$t('login.signUp.labels.firstName')" />
 					<TextInput
@@ -81,29 +88,29 @@ async function signUp() {
 				</pv-message>
 
 				<pv-button class="w-full" :label="$t('login.signUp.buttons.signUp')" @click="signUp" />
+			</div>
+		</div>
 
-				<p class="text-sm">
-					{{ $t("login.signUp.alreadyHaveAnAccount") }}
-					<a class="text-sm text-primary-500 hover:underline" @click="$emit('step', 'signIn')">
-						{{ $t("login.signUp.signIn") }}</a>
-				</p>
+		<div class="flex w-full flex-row items-center gap-4">
+			<hr class="w-full border-primary-300 dark:border-primary-900">
+			<p class="text-primary-300 dark:text-primary-900">
+				OR
+			</p>
+			<hr class="w-full border-primary-300 dark:border-primary-900">
+		</div>
+		<router-link to="/create-invoice" class="w-full">
+			<pv-button class="w-full" :label="$t('login.useFreeVersion')" />
+		</router-link>
 
-				<p class="text-sm">
-					{{ $t("login.dontWantToUseAccount") }}
-					<router-link to="/create-invoice" class="text-sm text-primary-500 hover:underline">
-						{{ $t("login.useFreeVersion") }}
-					</router-link>
-				</p>
-
-				<p class="text-sm">
-					{{ $t("login.agreeBySignIn") }}
-					<a href="https://invoicewolf.net/privacy-policy" class="text-sm text-primary-500 hover:underline">
-						{{ $t("login.privacyPolicy") }}
-					</a>
-				</p>
-			</form>
-		</template>
-	</BaseCard>
+		<div class="flex flex-col gap-4">
+			<p class="text-sm">
+				{{ $t("login.agreeBySignIn") }}
+				<a href="https://invoicewolf.net/privacy-policy" class="text-sm text-primary-500 hover:underline">
+					{{ $t("login.privacyPolicy") }}
+				</a>
+			</p>
+		</div>
+	</div>
 </template>
 
 <style scoped>

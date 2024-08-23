@@ -7,6 +7,7 @@ import type { CompanyDetails } from "@/utils/CompanyDetails";
 
 defineProps<{
 	disableFields?: boolean;
+	part?: "companyDetails" | "addressDetails";
 }>();
 
 const companyDetails = defineModel<CompanyDetails>({ required: true });
@@ -34,6 +35,7 @@ function onTaxNumberChange(val: string | null) {
 	<BaseForm add-required-explanation>
 		<template #form>
 			<TextInput
+				v-if="!part || part && part === 'companyDetails'"
 				id="companyName"
 				v-model="companyDetails.companyName"
 				:label="$t('companyDetails.labels.companyName')"
@@ -42,6 +44,7 @@ function onTaxNumberChange(val: string | null) {
 			/>
 
 			<TextInput
+				v-if="!part || part && part === 'companyDetails'"
 				id="companyEmail"
 				v-model="companyDetails.companyEmail"
 				:label="$t('companyDetails.labels.email')"
@@ -52,6 +55,7 @@ function onTaxNumberChange(val: string | null) {
 			/>
 
 			<TextInput
+				v-if="!part || part && part === 'companyDetails'"
 				id="companyNumber"
 				:model-value="companyDetails.companyNumber"
 				:label="$t('companyDetails.labels.companyNumber')"
@@ -61,6 +65,7 @@ function onTaxNumberChange(val: string | null) {
 			/>
 
 			<TextInput
+				v-if="!part || part && part === 'companyDetails'"
 				id="taxNumber"
 				v-capitalize
 				:model-value="companyDetails.taxNumber"
@@ -70,7 +75,7 @@ function onTaxNumberChange(val: string | null) {
 				@update:model-value="onTaxNumberChange"
 			/>
 
-			<AddressDetailsForm v-model="companyDetails" :disable-fields="disableFields" />
+			<AddressDetailsForm v-if="!part || part && part === 'addressDetails'" v-model="companyDetails" :disable-fields="disableFields" />
 		</template>
 	</BaseForm>
 </template>

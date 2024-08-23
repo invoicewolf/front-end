@@ -174,101 +174,103 @@ async function updateFirebasePassword(currentUser: UserDto) {
 </script>
 
 <template>
-	<pv-card class="w-[50rem]">
-		<template #title>
-			<span class="font-semibold">
-				{{ $t("profile.profile") }}
-			</span>
-		</template>
-		<template #header>
-			<div class="flex h-40 items-center justify-center rounded-t-[var(--pv-card-border-radius)] bg-primary-100 p-4 dark:bg-primary-900">
-				<pv-avatar
-					shape="circle"
-					class="size-28 bg-primary-500 text-5xl text-[var(--pv-button-primary-color)] drop-shadow"
-					:label="`${profile.user.firstName.substring(0, 1).toUpperCase()}${profile.user.lastName.substring(0, 1).toUpperCase()}`"
-				/>
-			</div>
-		</template>
-		<template #content>
-			<div class="mb-6 flex flex-row gap-4">
-				<div class="flex w-full flex-col gap-6">
-					<div class="grid grid-cols-2 gap-4">
-						<TextInput id="firstName" v-model="profile.user.firstName" :label="$t('profile.labels.firstName')" />
-						<TextInput
-							id="lastName" v-model="profile.user.lastName" :label="$t('profile.labels.lastName')"
-							class="text-right"
-						/>
-					</div>
-					<div class="flex flex-col gap-2 ">
-						<p class="font-medium">
-							{{ $t("profile.labels.userId") }}
-						</p>
-						<span class="flex flex-row items-center gap-1">{{ profile.user.id }} <pv-button
-							icon="pi pi-copy" aria-label="Copy to clipboard" text :pt="{
-								root: {
-									style: {
-										height: '1.5rem',
-										width: '1.5rem',
+	<div>
+		<pv-card class="w-[50rem]">
+			<template #title>
+				<span class="font-semibold">
+					{{ $t("profile.profile") }}
+				</span>
+			</template>
+			<template #header>
+				<div class="flex h-40 items-center justify-center rounded-t-[var(--pv-card-border-radius)] bg-primary-100 p-4 dark:bg-primary-900">
+					<pv-avatar
+						shape="circle"
+						class="size-28 bg-primary-500 text-5xl text-[var(--pv-button-primary-color)] drop-shadow"
+						:label="`${profile.user.firstName.substring(0, 1).toUpperCase()}${profile.user.lastName.substring(0, 1).toUpperCase()}`"
+					/>
+				</div>
+			</template>
+			<template #content>
+				<div class="mb-6 flex flex-row gap-4">
+					<div class="flex w-full flex-col gap-6">
+						<div class="grid grid-cols-2 gap-4">
+							<TextInput id="firstName" v-model="profile.user.firstName" :label="$t('profile.labels.firstName')" />
+							<TextInput
+								id="lastName" v-model="profile.user.lastName" :label="$t('profile.labels.lastName')"
+								class="text-right"
+							/>
+						</div>
+						<div class="flex flex-col gap-2 ">
+							<p class="font-medium">
+								{{ $t("profile.labels.userId") }}
+							</p>
+							<span class="flex flex-row items-center gap-1">{{ profile.user.id }} <pv-button
+								icon="pi pi-copy" aria-label="Copy to clipboard" text :pt="{
+									root: {
+										style: {
+											height: '1.5rem',
+											width: '1.5rem',
+										},
 									},
-								},
-							}" @click="copy(profile.user.id)"
-						/></span>
+								}" @click="copy(profile.user.id)"
+							/></span>
+						</div>
+						<div v-if="profile.company.companyName" class="flex flex-col gap-2">
+							<p class="font-medium">
+								{{ $t("profile.labels.companyName") }}
+							</p>
+							<span>{{ profile.company.companyName }}<span
+								v-if="getRoles().includes('admin')"
+							> ({{ $t("profile.owner") }})</span></span>
+						</div>
 					</div>
-					<div v-if="profile.company.companyName" class="flex flex-col gap-2">
-						<p class="font-medium">
-							{{ $t("profile.labels.companyName") }}
-						</p>
-						<span>{{ profile.company.companyName }}<span
-							v-if="getRoles().includes('admin')"
-						> ({{ $t("profile.owner") }})</span></span>
+
+					<pv-divider layout="vertical" />
+
+					<div class="flex w-full flex-col gap-6">
+						<TextInput id="email" v-model="profile.user.email" :label="$t('profile.labels.email')" />
+
+						<TextInput
+							id="password" v-model="currentPassword" password :label="$t('profile.labels.currentPassword')"
+							input-class="w-full"
+						/>
+						<TextInput
+							id="newPassword" v-model="newPassword" password password-feedback
+							:label="$t('profile.labels.newPassword')" input-class="w-full"
+							@update:model-value="handlePasswordValidation"
+						/>
+						<TextInput
+							id="confirmNewPassword" v-model="confirmNewPassword" password
+							:label="$t('profile.labels.confirmNewPassword')" input-class="w-full"
+							@update:model-value="handlePasswordValidation"
+						/>
+
+						<pv-message v-if="!invalidPassword" icon="pi pi-times-circle" severity="error">
+							Passwords do not match
+						</pv-message>
 					</div>
 				</div>
-
-				<pv-divider layout="vertical" />
-
-				<div class="flex w-full flex-col gap-6">
-					<TextInput id="email" v-model="profile.user.email" :label="$t('profile.labels.email')" />
-
-					<TextInput
-						id="password" v-model="currentPassword" password :label="$t('profile.labels.currentPassword')"
-						input-class="w-full"
+			</template>
+			<template #footer>
+				<div class="flex flex-row justify-between gap-16">
+					<pv-button
+						:label="$t('profile.buttons.deleteAccount')"
+						severity="danger"
+						class="flex-1"
+						icon="pi pi-trash"
+						@click="confirmDeletion"
 					/>
-					<TextInput
-						id="newPassword" v-model="newPassword" password password-feedback
-						:label="$t('profile.labels.newPassword')" input-class="w-full"
-						@update:model-value="handlePasswordValidation"
+					<pv-button
+						:label="$t('profile.buttons.updateProfile')"
+						class="flex-1"
+						icon="pi pi-user"
+						:loading="updateButtonLoading"
+						@click="updateProfile"
 					/>
-					<TextInput
-						id="confirmNewPassword" v-model="confirmNewPassword" password
-						:label="$t('profile.labels.confirmNewPassword')" input-class="w-full"
-						@update:model-value="handlePasswordValidation"
-					/>
-
-					<pv-message v-if="!invalidPassword" icon="pi pi-times-circle" severity="error">
-						Passwords do not match
-					</pv-message>
 				</div>
-			</div>
-		</template>
-		<template #footer>
-			<div class="flex flex-row justify-between gap-16">
-				<pv-button
-					:label="$t('profile.buttons.deleteAccount')"
-					severity="danger"
-					class="flex-1"
-					icon="pi pi-trash"
-					@click="confirmDeletion"
-				/>
-				<pv-button
-					:label="$t('profile.buttons.updateProfile')"
-					class="flex-1"
-					icon="pi pi-user"
-					:loading="updateButtonLoading"
-					@click="updateProfile"
-				/>
-			</div>
-		</template>
-	</pv-card>
+			</template>
+		</pv-card>
 
-	<pv-confirm-dialog />
+		<pv-confirm-dialog />
+	</div>
 </template>

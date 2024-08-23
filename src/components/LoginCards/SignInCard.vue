@@ -2,7 +2,6 @@
 import { ref } from "vue";
 import { useRoute } from "vue-router";
 import { userSignIn } from "@/utils/login-flow/user-sign-in";
-import BaseCard from "@/components/LoginCards/BaseCard.vue";
 import TextInput from "@/components/TextInput.vue";
 
 defineEmits<{ (e: "step", step: "signIn" | "signUp" | "joinOrCreate" | "companyDetails" | "paymentDetails" | "forgotPassword" | "loading"): void }>();
@@ -34,59 +33,74 @@ async function signIn() {
 </script>
 
 <template>
-	<BaseCard :show-loading-bar="signingIn">
-		<template #title>
-			{{ $t("login.login.signInToYourAccount") }}
-		</template>
-		<template #content>
-			<form class="space-y-4 md:space-y-6">
-				<div class="flex flex-col gap-6">
-					<TextInput id="email" v-model="model.email" :disabled="signingIn" :label="$t('login.login.labels.email')" />
+	<div class="flex h-full flex-col justify-between gap-4 bg-surface-0 p-10 dark:bg-surface-950">
+		<div class="flex flex-col gap-24">
+			<div class="flex flex-col gap-4">
+				<h1 class="text-4xl font-semibold">
+					{{ $t("login.login.signInToYourAccount") }}
+				</h1>
+				<p class="text-sm">
+					{{ $t("login.login.dontHaveAnAccount") }}
+					<a class="text-sm text-primary-500 hover:underline" @click="$emit('step', 'signUp')">
+						{{ $t("login.login.signUp") }}</a>
+				</p>
+			</div>
 
-					<TextInput
-						id="password" v-model="model.password" :disabled="signingIn"
-						:label="$t('login.login.labels.password')" password input-class="w-full"
-					/>
+			<div class="flex flex-col gap-4">
+				<TextInput
+					id="email"
+					v-model="model.email"
+					:disabled="signingIn"
+					:label="$t('login.login.labels.email')"
+				/>
 
-					<pv-message v-if="incorrect" icon="pi pi-times-circle" severity="error">
-						{{ $t("login.login.messages.emailOrPasswordIncorrect") }}
-					</pv-message>
+				<TextInput
+					id="password"
+					v-model="model.password"
+					:disabled="signingIn"
+					:label="$t('login.login.labels.password')" password input-class="w-full"
+				/>
 
-					<div class="flex items-center justify-between">
-						<a
-							class="text-sm font-medium text-primary-500 hover:underline"
-							@click="$emit('step', 'forgotPassword')"
-						>{{ $t("login.login.forgotPassword") }}</a>
-					</div>
+				<pv-message v-if="incorrect" icon="pi pi-times-circle" severity="error">
+					{{ $t("login.login.messages.emailOrPasswordIncorrect") }}
+				</pv-message>
 
-					<pv-button
-						:disabled="signingIn" :label="$t('login.login.buttons.signIn')"
-						@click="signIn"
-					/>
-
-					<p class="text-sm">
-						{{ $t("login.login.dontHaveAnAccount") }}
-						<a class="text-sm text-primary-500 hover:underline" @click="$emit('step', 'signUp')">
-							{{ $t("login.login.signUp") }}</a>
-					</p>
-
-					<p class="text-sm">
-						{{ $t("login.dontWantToUseAccount") }}
-						<router-link to="/create-invoice" class="text-sm text-primary-500 hover:underline">
-							{{ $t("login.useFreeVersion") }}
-						</router-link>
-					</p>
-
-					<p class="text-sm">
-						{{ $t("login.agreeBySignIn") }}
-						<a href="https://invoicewolf.net/privacy-policy" class="text-sm text-primary-500 hover:underline">
-							{{ $t("login.privacyPolicy") }}
-						</a>
-					</p>
+				<div class="flex items-center justify-between">
+					<a
+						class="text-sm font-medium text-primary-500 hover:underline"
+						@click="$emit('step', 'forgotPassword')"
+					>{{ $t("login.login.forgotPassword") }}</a>
 				</div>
-			</form>
-		</template>
-	</BaseCard>
+
+				<pv-button
+					:disabled="signingIn"
+					:loading="signingIn"
+					:label="$t('login.login.buttons.signIn')"
+					@click="signIn"
+				/>
+			</div>
+
+			<div class="flex w-full flex-row items-center gap-4">
+				<hr class="w-full border-primary-300 dark:border-primary-900">
+				<p class="text-primary-300 dark:text-primary-900">
+					OR
+				</p>
+				<hr class="w-full border-primary-300 dark:border-primary-900">
+			</div>
+			<router-link to="/create-invoice" class="w-full">
+				<pv-button class="w-full" :label="$t('login.useFreeVersion')" />
+			</router-link>
+		</div>
+
+		<div class="flex flex-col gap-4">
+			<p class="text-sm">
+				{{ $t("login.agreeBySignIn") }}
+				<a href="https://invoicewolf.net/privacy-policy" class="text-sm text-primary-500 hover:underline">
+					{{ $t("login.privacyPolicy") }}
+				</a>
+			</p>
+		</div>
+	</div>
 </template>
 
 <style scoped>

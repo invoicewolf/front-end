@@ -112,7 +112,7 @@ watch(activeStep, () => {
 </script>
 
 <template>
-	<main class="container mx-auto flex-1">
+	<main class="container mx-auto flex-1 p-10">
 		<pv-stepper v-model:value="activeStep" linear>
 			<pv-step-list>
 				<pv-step value="1" class="select-none">

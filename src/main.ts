@@ -28,6 +28,7 @@ import InputIcon from "primevue/inputicon";
 import InputMask from "primevue/inputmask";
 import InputNumber from "primevue/inputnumber";
 import InputText from "primevue/inputtext";
+import Knob from "primevue/knob";
 import Menubar from "primevue/menubar";
 import Message from "primevue/message";
 import Password from "primevue/password";
@@ -182,6 +183,8 @@ app.component("PvConfirmDialog", ConfirmDialog);
 app.component("PvAvatar", Avatar);
 
 app.component("PvSkeleton", Skeleton);
+
+app.component("PvKnob", Knob);
 
 export const i18n = createI18n({
 	legacy: false,

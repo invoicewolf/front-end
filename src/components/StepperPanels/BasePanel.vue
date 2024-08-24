@@ -2,12 +2,16 @@
 defineProps<{
 	hidePreviousButton?: boolean;
 	disableNextButton?: boolean;
+	title?: string;
 }>();
 
 defineEmits(["previous", "next"]);
 </script>
 
 <template>
+	<div v-if="title" class="mb-4 text-3xl font-semibold">
+		{{ title }}
+	</div>
 	<div class="size-full">
 		<slot />
 	</div>

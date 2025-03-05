@@ -1,6 +1,5 @@
 import "./assets/main.css";
-
-import { createClient } from "@hey-api/client-fetch";
+import { client } from "@/utils/client";
 
 import { definePreset } from "@primevue/themes";
 import Aura from "@primevue/themes/aura";
@@ -220,7 +219,7 @@ app.use(pinia);
 
 app.use(router);
 
-const client = createClient({
+client.setConfig({
 	baseUrl: import.meta.env.VITE_API_URL,
 });
 

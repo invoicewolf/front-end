@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { useFileSystemAccess } from "@vueuse/core";
 import { computed, ref, watch } from "vue";
 import { useI18n } from "vue-i18n";
 import { debounce } from "@/utils/helpers/debounce";
@@ -15,38 +14,17 @@ import { useInvoiceManager } from "@/composables/invoice-manager";
 const invoiceManager = useInvoiceManager();
 const i18n = useI18n();
 
-async function saveFile() {
-	const res = useFileSystemAccess({
-		dataType: "Text",
-		types: [{
-			description: "IW invoice file",
-			accept: {
-				"application/json": [".iw"],
-			},
-		}],
-		excludeAcceptAllOption: true,
-	});
+async function exportFile(blob: Blob, filename: string) {
+	const link = document.createElement("a");
 
-	res.data.value = invoiceManager.getData();
+	const url = URL.createObjectURL(blob);
 
-	res.save();
-}
+	link.href = url;
+	link.download = filename;
 
-async function exportFile() {
-	const res = useFileSystemAccess({
-		dataType: "ArrayBuffer",
-		types: [{
-			description: "Invoice PDF",
-			accept: {
-				"application/pdf": [".pdf"],
-			},
-		}],
-		excludeAcceptAllOption: true,
-	});
+	link.click();
 
-	res.data.value = (await invoiceManager.createPdf()).buffer;
-
-	res.save();
+	URL.revokeObjectURL(url);
 }
 
 const enableStep1NextButton = computed(() => {
@@ -206,7 +184,7 @@ watch(activeStep, () => {
 								@previous="activateCallback('4')"
 							>
 								<Suspense>
-									<ExportPanel :key="pdfComponentKey" @save="saveFile" @export-to-pdf="exportFile" />
+									<ExportPanel :key="pdfComponentKey" @save-file="exportFile" />
 								</Suspense>
 							</BasePanel>
 						</div>

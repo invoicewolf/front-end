@@ -1,5 +1,4 @@
 import "./assets/main.css";
-import { client } from "@/utils/client";
 
 import { definePreset } from "@primevue/themes";
 import Aura from "@primevue/themes/aura";
@@ -55,6 +54,7 @@ import { createApp } from "vue";
 import { createI18n } from "vue-i18n";
 import App from "./App.vue";
 import { router } from "./router";
+import { client } from "@/utils/client";
 import { nlNL } from "@/langs/nl-NL";
 import { enUS } from "@/langs/en-US";
 import { enGB } from "@/langs/en-GB";

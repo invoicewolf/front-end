@@ -1,6 +1,3 @@
-import { formatCurrencyInvoice } from "@/utils/helpers/format-currency-invoice";
-import type { CurrencyStrings } from "@/utils/typings/currencies";
-
 export interface IPrice {
 	subtotal: number;
 	taxAmount: number;
@@ -18,13 +15,5 @@ export class Price implements IPrice {
 			this.taxAmount = price.taxAmount;
 			this.total = price.total;
 		}
-	}
-
-	getFormattedPrice(currency: CurrencyStrings, addCurrencySymbol: boolean) {
-		return {
-			subtotal: formatCurrencyInvoice(this.subtotal, currency, addCurrencySymbol),
-			taxAmount: formatCurrencyInvoice(this.taxAmount, currency, addCurrencySymbol),
-			total: formatCurrencyInvoice(this.total, currency, addCurrencySymbol),
-		};
 	}
 }

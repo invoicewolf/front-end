@@ -51,14 +51,6 @@ export class Invoice implements IInvoice {
 		return this;
 	}
 
-	getFormattedProducts(addCurrencySymbol = true) {
-		return this.products.map(product => product.getFormattedProduct(this.paymentDetails.currency, addCurrencySymbol));
-	}
-
-	getFormattedPrice(addCurrencySymbol = true) {
-		return this.price.getFormattedPrice(this.paymentDetails.currency, addCurrencySymbol);
-	}
-
 	reset() {
 		this.companyDetails.reset();
 		this.addresseeDetails.reset();

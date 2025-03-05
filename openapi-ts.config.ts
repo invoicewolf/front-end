@@ -7,7 +7,16 @@ export default defineConfig({
 		lint: "eslint",
 		path: "src/utils/client",
 	},
-	types: {
-		enums: "typescript",
-	},
+	plugins: [
+		"@hey-api/schemas",
+		"@hey-api/services",
+		{
+			dates: true,
+			name: "@hey-api/transformers",
+		},
+		{
+			enums: "typescript",
+			name: "@hey-api/types",
+		},
+	],
 });

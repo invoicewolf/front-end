@@ -1,7 +1,5 @@
 import "./assets/main.css";
 
-import { createClient } from "@hey-api/client-fetch";
-
 import { definePreset } from "@primevue/themes";
 import Aura from "@primevue/themes/aura";
 import VueDatePicker from "@vuepic/vue-datepicker";
@@ -56,6 +54,7 @@ import { createApp } from "vue";
 import { createI18n } from "vue-i18n";
 import App from "./App.vue";
 import { router } from "./router";
+import { client } from "@/utils/client";
 import { nlNL } from "@/langs/nl-NL";
 import { enUS } from "@/langs/en-US";
 import { enGB } from "@/langs/en-GB";
@@ -220,7 +219,7 @@ app.use(pinia);
 
 app.use(router);
 
-const client = createClient({
+client.setConfig({
 	baseUrl: import.meta.env.VITE_API_URL,
 });
 
